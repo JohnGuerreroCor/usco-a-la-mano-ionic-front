@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Restaurante</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-select label="Default label" placeholder="Favorite Fruit">
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Fixed label"
+        label-placement="fixed"
+        placeholder="Favorite fruit"
+      >
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Stacked label" label-placement="stacked">
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Floating label" label-placement="floating">
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-segment value="default">
+    <ion-segment-button value="default">
+      <ion-label>Default</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="segment">
+      <ion-label>Segment</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
+  <ion-segment [disabled]="true" value="disabled">
+    <ion-segment-button value="disabled">
+      <ion-label>Disabled</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="segment">
+      <ion-label>Segment</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>

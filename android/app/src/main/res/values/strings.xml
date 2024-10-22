@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">plantilla-ionic-web</string>
+    <string name="title_activity_main">plantilla-ionic-web</string>
+    <string name="package_name">com.usco.app</string>
+    <string name="custom_url_scheme">com.usco.app</string>
+</resources>

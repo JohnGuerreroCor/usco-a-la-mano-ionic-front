@@ -1,0 +1,138 @@
+<ion-content class="content">
+  <div class="content">
+    <ion-card class="card-login ion-text-center">
+      <ion-card-header class="header-usco-card bg-usco-vt">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img
+                title="USCO"
+                src="assets/universidad-surcolombiana-multicampos-white.png"
+                class="img-fluid"
+              />
+            </ion-col>
+          </ion-row>
+          <hr class="punteada" />
+          <ion-text class="ion-text-center text-white">
+            <strong>USCO A LA MANO</strong>
+          </ion-text>
+        </ion-grid>
+      </ion-card-header>
+      <ion-card-content class="card-body text-center font-usco-gr">
+        <ion-grid>
+          <div class="container">
+            <form [formGroup]="formLogin">
+              <ion-list class="ion-padding-top">
+                <ion-item>
+                  <ion-input
+                    labelPlacement="stacked"
+                    label="Usuario"
+                    formControlName="usuario"
+                    placeholder="Toque el botón 'i' para más información"
+                    tabindex="1"
+                  >
+                    <i
+                      slot="start"
+                      aria-hidden="true"
+                      class="fa-solid fa-user"
+                    ></i>
+                  </ion-input>
+                </ion-item>
+                <ion-item class="ion-padding-top">
+                  <ion-input
+                    labelPlacement="stacked"
+                    [type]="hide ? 'password' : 'text'"
+                    formControlName="contrasenia"
+                    label="Contraseña"
+                    placeholder="Digite su clave"
+                    tabindex="2"
+                  >
+                    <i
+                      class="fa-solid fa-lock"
+                      slot="start"
+                      aria-hidden="true"
+                    ></i>
+                    <ion-button
+                      tabindex="4"
+                      (click)="hide = !hide"
+                      fill="clear"
+                      slot="end"
+                      aria-label="Show/hide"
+                    >
+                      <i
+                        class="fa-solid fa-eye"
+                        slot="icon-only"
+                        aria-hidden="true"
+                      ></i>
+                    </ion-button>
+                  </ion-input>
+                </ion-item>
+              </ion-list>
+              <ion-button class="mt-3" tabindex="3" (click)="login()">
+                Ingresar
+                <!--   <ion-spinner
+                  *ngIf="cargando"
+                  name="lines-small"
+                  slot="end"
+                ></ion-spinner> -->
+              </ion-button>
+              <ion-row>
+                <ion-col>
+                  <ion-text>
+                    <a
+                      href="https://www.usco.edu.co/cambio_clave/"
+                      target="_blank"
+                    >
+                      <small class="font-small-usco-vt font-weight-bold"
+                        ><strong>¿Olvidó su contraseña?</strong></small
+                      >
+                    </a>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
+                <ng-template>
+                  <div class="wrapper">
+                    <h1 class="font-usco-vt">
+                      <strong>Tipos de usuario:</strong>
+                    </h1>
+                    <ion-row>
+                      <ion-col>
+                        <img src="assets/tipousuariousco2.png" alt="" />
+                      </ion-col>
+                    </ion-row>
+                  </div>
+                </ng-template>
+              </ion-modal>
+              <ion-row>
+                <ion-col>
+                  <small class="font-small-usco-vt font-weight-bold cursor-select">
+                    <a id="open-custom-dialog" expand="block">
+                      <strong
+                        ><i class="fa-solid fa-circle-info"></i> Tipos de
+                        Usuario</strong
+                      >
+                    </a>
+                    |
+                    <a [routerLink]="['/restaurante']">
+                      <strong
+                        ><i class="fa-solid fa-book"></i> Instructivo</strong
+                      >
+                    </a>
+                  </small>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <small class="font-usco-gr">
+                    <strong>CITCD - Versión 2 Construcción 1.0</strong>
+                  </small>
+                </ion-col>
+              </ion-row>
+            </form>
+          </div>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

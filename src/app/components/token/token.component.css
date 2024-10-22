@@ -1,0 +1,25 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.card-login {
+  background: white;
+  border: 1px solid #a6b1b6;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px #999;
+}
+
+.header-usco-card {
+  border-radius: 15px 15px 0 0;
+}
+
+.punteada {
+  border-top: 1px dashed white;
+}
+
+.fondo {
+  background-color: #dbe0e2;
+}

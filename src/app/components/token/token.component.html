@@ -1,0 +1,74 @@
+<ion-content class="content">
+  <div class="content">
+    <ion-card class="card-login ion-text-center">
+      <ion-card-header class="header-usco-card bg-usco-vt">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img
+                title="USCO"
+                src="assets/universidad-surcolombiana-multicampos-white.png"
+                class="img-fluid"
+              />
+            </ion-col>
+          </ion-row>
+          <hr class="punteada" />
+          <ion-text class="ion-text-center text-white">
+            <strong>USCO A LA MANO</strong>
+          </ion-text>
+        </ion-grid>
+      </ion-card-header>
+      <ion-card-content class="card-body text-center font-usco-gr">
+        <ion-grid>
+          <div class="container">
+            <form [formGroup]="formToken">
+              <ion-row class="ion-margin-top">
+                <ion-col>
+                  <ion-text class="ion-text-center">
+                    Se ha enviado a su correo institucional <br />
+                    (<strong *ngIf="correo">{{ correo.correo }}</strong
+                    >) un codigo de verificación. <br />
+                    Por favor ingresar a su correo, copia el codigo <br />
+                    y diligenciar en el campo correspondiente.
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-list class="pe-5 ps-5 pt-3 pb-2">
+                <ion-item>
+                  <ion-input
+                    labelPlacement="stacked"
+                    label="Código de verificación"
+                    formControlName="token"
+                    placeholder="ABCDE"
+                    tabindex="1"
+                  >
+                    <i
+                      class="fa-solid fa-key"
+                      slot="start"
+                      aria-hidden="true"
+                    ></i>
+                  </ion-input>
+                </ion-item>
+              </ion-list>
+              <ion-row class="ion-margin-top">
+                <ion-col>
+                  <ion-button tabindex="2" (click)="validarToken()">
+                    Validar Token
+                    <!-- <ion-spinner name="lines-small" slot="end"></ion-spinner> -->
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <small class="font-usco-gr">
+                    <strong>CITCD - Versión 2 Construcción 1.0</strong>
+                  </small>
+                </ion-col>
+              </ion-row>
+            </form>
+          </div>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
