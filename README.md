@@ -1,27 +1,79 @@
-# PlantillaIonicWeb
+# Módulo USCO a la Mano Ionic Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.10.
+![Logo de la USCO](https://www.usco.edu.co/imagen-institucional/logo/universidad-surcolombiana.png)
 
-## Development server
+Este módulo ha sido desarrollado utilizando las siguientes tecnologías:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Angular 15.2.11**  
+  Documentación oficial: [https://angular.io/docs](https://www.npmjs.com/package/@angular/cli/v/15.2.11)
 
-## Code scaffolding
+- **Angular Material 15**  
+  Documentación oficial: [https://material.angular.io/](https://v15.material.angular.io/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Bootstrap 4.6**  
+  Documentación oficial: [https://getbootstrap.com/docs/4.6/getting-started/introduction/](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 
-## Build
+- **FontAwesome 6**  
+  Documentación oficial: [https://fontawesome.com/docs](https://fontawesome.com/search?o=r&m=free)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Ionic Framework**  
+  Documentación oficial: [https://ionicframework.com/docs](https://ionicframework.com/docs)
 
-## Running unit tests
+- **Capacitor**  
+  Documentación oficial: [https://capacitorjs.com/docs](https://capacitorjs.com/docs)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Descripción
 
-## Running end-to-end tests
+Ofrece múltiples servicios que abarcan la parte de control de acceso con la credencial digital, restaurante universitario, biblioteca y consultas académicas.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Instalación y Uso
 
-## Further help
+1. Clona el repositorio:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   git clone https://github.com/usuario/repo.git
+   ```
+
+2. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Corre la aplicación en el navegador:
+   ```bash
+   ng serve
+   ```
+
+## Despliegue en Dispositivos Móviles
+
+### Preparar para Capacitor
+
+1. Añade la plataforma Android o iOS:
+
+   ```bash
+   ionic capacitor add android
+   ionic capacitor add ios
+   ```
+
+2. Sincroniza los cambios del proyecto con Capacitor:
+
+   ```bash
+   ionic capacitor sync
+   ```
+
+### Compilación y Despliegue
+
+- **Android**:  
+  Abre el proyecto en Android Studio y ejecuta en un dispositivo o emulador:
+
+   ```bash
+   ionic capacitor open android
+   ```
+
+- **iOS**:  
+  Abre el proyecto en Xcode y ejecuta en un dispositivo o simulador:
+
+   ```bash
+   ionic capacitor open ios
+   ```

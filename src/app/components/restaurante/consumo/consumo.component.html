@@ -1,0 +1,92 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="content">
+    <div class="container slide-in-fwd-center">
+      <ion-card class="card-usco-carnet carnet-usco-body shadow text-center">
+        <ion-row>
+          <ion-col
+            ><div
+              class="bg-usco-gr-d6 text-white p-2"
+              style="border-radius: 15px 15px 0 0"
+            >
+              <img
+                src="assets/universidad-surcolombiana-multicampos-white.png"
+                alt="USCO"
+                style="width: 70%"
+              /></div
+          ></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="text-center pl-4 pr-4 pt-4"
+            ><img src="{{ qrEncriptado }}" alt="USCO" *ngIf="qrEncriptado"
+          /></ion-col>
+        </ion-row>
+        <ion-row *ngIf="!qrEncriptado">
+          <ion-col>
+            <div class="alert alert-warning m-4" role="alert">
+              <h4 class="alert-heading font-weight-bold">
+                ¡No tiene tiquetes comprados!
+              </h4>
+              <p>
+                Por favor arrastra la pantalla hacia abajo para refrescar los
+                datos de los tiquetes comprados.
+              </p>
+            </div></ion-col
+          >
+        </ion-row>
+        <ion-row>
+          <ion-col
+            ><table
+              *ngIf="boletas"
+              class="table table-sm table-hover text-center"
+              style="font-size: 12px"
+            >
+              <tbody>
+                <tr class="thead-dark">
+                  <th scope="row">Sede</th>
+                  <th scope="row">Tipo</th>
+                  <th scope="row">Cantidad</th>
+                  <th scope="row">Vigencia</th>
+                </tr>
+                <tr *ngFor="let item of boletas">
+                  <td>{{ item.uaaRestauranteNombre }}</td>
+                  <td>
+                    {{ item.restauranteTipoServicioNombre }}
+                  </td>
+                  <td>{{ item.restauranteBoleta }}</td>
+                  <td>
+                    <!-- {{
+                item.restauranteContratoFecha | date : "dd-MM-yyyy"
+              }} -->
+                    {{ hoy | date : "dd-MM-yyyy" }}
+                  </td>
+                </tr>
+                <tr *ngIf="!qrEncriptado">
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table></ion-col
+          >
+        </ion-row>
+        <ion-row
+          class="bg-usco-gr-d6 text-white text-center"
+          style="border-radius: 0 0 15px 15px"
+        >
+          <ion-col
+            ><h6
+              class="p-2 font-weight-bold text-uppercase"
+              style="margin-bottom: 0"
+            >
+              <i class="fa-solid fa-ticket"></i> BOLETA RESTAURANTE
+              <i class="fa-solid fa-ticket"></i></h6
+          ></ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

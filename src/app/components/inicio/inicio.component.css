@@ -1,3 +1,10 @@
 .color-icon {
   color: #4d626c;
 }
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Notas Parciales</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content" *ngIf="(listadoCursos | json) == '[]'">
+    <ion-grid>
+      <ion-row class="text-center">
+        <ion-col
+          ><img src="assets/precarga-usco.gif" class="img-fluid" alt="USCO"
+        /></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col">
+        <ion-list>
+          <ion-item>
+            <ion-select
+              aria-label="Fruit"
+              interface="action-sheet"
+              placeholder="Seleccione el periodo"
+              [(ngModel)]="periodo"
+              (ngModelChange)="obtenerNotasParcialesPorPeriodo($event)"
+              fill="outline"
+            >
+              <ion-select-option
+                *ngFor="let periodo of listadoPeriodos"
+                [value]="periodo.periodo"
+                >{{ periodo.periodo | periodo }}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="(listadoCursos | json) != '[]'" class="mt-2 slide-in-fwd-center">
+    <ion-accordion-group>
+      <ion-accordion
+        *ngFor="let curso of listadoCursos; let i = index"
+        [value]="'accordion-' + i"
+      >
+        <!-- Encabezado del acordeón -->
+        <ion-item slot="header" color="dark">
+          <ion-label>
+            <div style="font-size: 12px; font-weight: bold">
+              <i class="fa-solid fa-book-bookmark"></i>
+              {{ curso.asignaturaNombre }} <br />
+              {{ curso.asignaturaNombreCorto }} <br />
+              <small
+                >Créditos: {{ curso.cursoCreditos }} | Definitiva:
+                {{ curso.asignaturaNota }}</small
+              >
+            </div>
+          </ion-label>
+        </ion-item>
+
+        <!-- Contenido del acordeón -->
+        <div class="ion-padding" slot="content">
+          <span *ngIf="listadoNotasParciales.length == 0"
+            >No se aplicó notas parciales para este curso</span
+          >
+          <ng-container *ngFor="let notaParcial of listadoNotasParciales">
+            <span
+              *ngIf="
+                curso.codigo === notaParcial.codigo &&
+                notaParcial.corteNombre == null
+              "
+              >No se aplicó notas parciales para este curso</span
+            >
+            <ng-container
+              *ngIf="
+                curso.codigo === notaParcial.codigo &&
+                notaParcial.corteNombre != null
+              "
+            >
+              <ion-card>
+                <table
+                  class="table table-bordered table-striped mb-0"
+                  style="font-size: 12px"
+                >
+                  <thead>
+                    <tr class="bg-usco-vt-d6 text-white text-left">
+                      <td colspan="2" scope="col">
+                        <i class="fa-solid fa-circle-check"></i>
+                        {{ notaParcial.corteNombre }} -
+                        {{ notaParcial.cortePorcentaje }}%
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <th class="p-1" scope="col">Nota parcial</th>
+                      <th class="p-1" scope="col">Fallas</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-center">
+                    <tr>
+                      <td class="p-1 font-weight-bold">
+                        <span
+                          *ngIf="
+                            notaParcial.corteNota >= 3 &&
+                            notaParcial.corteNota != null
+                          "
+                          >{{ notaParcial.corteNota | number : "1.1-1" }}</span
+                        >
+                        <span
+                          *ngIf="
+                            notaParcial.corteNota < 3 &&
+                            notaParcial.corteNota != null
+                          "
+                          style="color: red"
+                          >{{ notaParcial.corteNota | number : "1.1-1" }}</span
+                        >
+                      </td>
+                      <td class="p-1">{{ notaParcial.corteFallas }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ion-card>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+</ion-content>

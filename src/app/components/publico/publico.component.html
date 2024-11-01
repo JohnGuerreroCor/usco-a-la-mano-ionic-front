@@ -1,0 +1,392 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <img
+        class="img-fluid"
+        src="assets/universidad-surcolombiana-multicampos-white.png"
+        style="width: 60%"
+        alt="USCO"
+    /></ion-buttons>
+    <ion-title>USCO</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content">
+    <div class="container text-center">
+      <!--ADMINISTRATIVO-->
+      <ion-card
+        id="carnet-usco-rotulo-front"
+        class="card-usco-carnet"
+        style="text-align: center"
+        *ngIf="carnetAdministrativo && (persona | json) != '[]'"
+      >
+        <ion-card-header>
+          <ion-card-title
+            ><img
+              src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+              class="img-fluid"
+          /></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col
+                ><img
+                  *ngIf="(administrativo | json) != '[]'"
+                  src="{{ foto.url }}"
+                  [alt]="persona[0].apellido"
+                  [title]="persona[0].apellido"
+                  class="card-img-top foto-usco cursor-select"
+              /></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col></ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(administrativo | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ persona[0].nombre }} {{ persona[0].apellido }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(administrativo | json) != '[]'"
+                class="font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ persona[0].documento }}:
+                  {{ administrativo[0].identificacion }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(administrativo | json) != '[]'"
+                class="font-usco-vt font-usco-gr administrativo"
+              >
+                <strong>R.H: {{ persona[0].grupoSanguineo }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(administrativo | json) != '[]'"
+                class="font-usco-default font-usco-gr administrativo text-uppercase"
+              >
+                <strong>{{ administrativo[0].nombrePrograma }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <h6
+                *ngIf="(administrativo | json) != '[]'"
+                class="font-usco-default font-usco-vt administrativo text-uppercase"
+              >
+                <strong>{{ administrativo[0].cargoNombre }}</strong>
+              </h6>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <!--ADMINISTRATIVO-->
+      <!--DOCENTE-->
+      <ion-card
+        id="carnet-usco-rotulo-front"
+        class="card-usco-carnet"
+        style="text-align: center"
+        *ngIf="carnetDocente"
+      >
+        <ion-card-header>
+          <ion-card-title
+            ><img
+              src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+              class="img-fluid"
+          /></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col
+                ><img
+                  *ngIf="(docente | json) != '[]'"
+                  src="{{ foto.url }}"
+                  [alt]="persona[0].apellido"
+                  [title]="persona[0].apellido"
+                  class="card-img-top foto-usco cursor-select"
+              /></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col></ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(docente | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ docente[0].persona.nombre }}
+                  {{ docente[0].persona.apellido }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(docente | json) != '[]'"
+                class="font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ docente[0].persona.documento }}:
+                  {{ docente[0].persona.identificacion }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6 *ngIf="(docente | json) != '[]'" class="font-usco-vt">
+                <strong>R.H: {{ persona[0].grupoSanguineo }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(docente | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ docente[0].sede }} -
+                  {{ docente[0].nombrePrograma }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <h6 class="font-usco-default font-usco-vt text-uppercase">
+                <strong>{{ docente[0].vinculacionNombre }}</strong>
+              </h6>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <!--DOCENTE-->
+      <!--ESTUDIANTE-->
+      <ion-card
+        id="carnet-usco-rotulo-front"
+        class="card-usco-carnet"
+        style="text-align: center"
+        *ngIf="carnetEstudiante"
+      >
+        <ion-card-header>
+          <ion-card-title
+            ><img
+              src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+              class="img-fluid"
+          /></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col
+                ><img
+                  *ngIf="(estudiante | json) != '[]'"
+                  src="{{ foto.url }}"
+                  [alt]="estudiante[0].persona.apellido"
+                  [title]="estudiante[0].persona.apellido"
+                  class="card-img-top foto-usco cursor-select"
+              /></ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(estudiante | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ estudiante[0].persona.nombre }}
+                  {{ estudiante[0].persona.apellido }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(estudiante | json) != '[]'"
+                class="font-usco-gr text-uppercase"
+              >
+                <strong>Código: {{ estudiante[0].codigo }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(estudiante | json) != '[]'"
+                class="font-usco-default font-usco-gr"
+              >
+                <strong
+                  >{{ estudiante[0].persona.documento }}:
+                  {{ estudiante[0].persona.identificacion }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(estudiante | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong>{{ estudiante[0].programa.nombreCorto }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <h6 class="font-usco-default font-usco-vt text-uppercase">
+                <strong>ESTUDIANTE</strong>
+              </h6>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <!--ESTUDIANTE-->
+      <!--ESTUDIANTE INTERCAMBIO-->
+      <!--ESTUDIANTE INTERCAMBIO-->
+      <!--GRADUADO-->
+      <ion-card
+        id="carnet-usco-rotulo-front"
+        class="card-usco-carnet"
+        style="text-align: center"
+        *ngIf="carnetGraduado"
+      >
+        <ion-card-header>
+          <ion-card-title
+            ><img
+              src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+              class="img-fluid"
+          /></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col
+                ><img
+                  *ngIf="(graduado | json) != '[]'"
+                  src="{{ foto.url }}"
+                  [alt]="graduado[0].persona.apellido"
+                  [title]="graduado[0].persona.apellido"
+                  class="card-img-top foto-usco cursor-select"
+              /></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col></ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(graduado | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ graduado[0].persona.nombre }}
+                  {{ graduado[0].persona.apellido
+                  }}<span *ngIf="graduado[0].persona.codigo == 137556"
+                    ><i class="fa-solid fa-heart"></i></span
+                ></strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(graduado | json) != '[]'"
+                class="font-usco-gr text-uppercase"
+              >
+                <strong
+                  >{{ graduado[0].persona.documento }}:
+                  {{ graduado[0].persona.identificacion }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6 *ngIf="(graduado | json) != '[]'" class="font-usco-vt">
+                <strong>R.H: {{ graduado[0].persona.grupoSanguineo }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(graduado | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong>{{ graduado[0].programa.nombreCorto }}</strong>
+              </h6>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <h6
+                *ngIf="(graduado | json) != '[]'"
+                class="font-usco-default font-usco-gr text-uppercase"
+              >
+                <strong
+                  >Grado:
+                  {{ graduado[0].fechaGrado | date : "dd/MM/yyyy" }}</strong
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <h6
+                *ngIf="graduado[0].persona.genero === 'M'"
+                class="font-usco-default font-usco-vt graduado text-uppercase"
+              >
+                <strong>graduado</strong>
+              </h6>
+              <h6
+                *ngIf="graduado[0].persona.genero === 'F'"
+                class="font-usco-default font-usco-vt graduado text-uppercase"
+              >
+                <strong>graduada</strong>
+              </h6>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <!--GRADUADO-->
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="dark" class="text-center">
+    <ion-title style="font-size: 12px"
+      >© {{ anio | date : "yyyy" }} CITCD - Version 2 Construcción
+      1.0</ion-title
+    >
+  </ion-toolbar>
+</ion-footer>

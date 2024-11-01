@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Matrícula</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="mt-2">
+    <ion-item>
+      <ion-select
+        aria-label="Fruit"
+        interface="action-sheet"
+        placeholder="Seleccione el periodo"
+        [(ngModel)]="periodo"
+        (ngModelChange)="obtenerMatriculaActualPorPeriodo($event)"
+        fill="outline"
+      >
+        <ion-select-option
+          *ngFor="let periodo of listadoPeriodos"
+          [value]="periodo.periodo"
+          >{{ periodo.periodo | periodo }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div class="content" *ngIf="(listadoCursos | json) == '[]'">
+    <ion-grid>
+      <ion-row class="text-center">
+        <ion-col
+          ><img src="assets/precarga-usco.gif" class="img-fluid" alt="USCO"
+        /></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="container slide-in-fwd-center">
+    <div *ngFor="let item of listadoCursos" class="card shadow-sm mt-3">
+      <div class="infos mb-2">
+        <div class="image">
+          <img
+            [src]="
+              'https://sanagustin.usco.edu.co/carnetizacion_admon/obtenerFoto/' +
+              item.personaCodigo
+            "
+            class="img-fluid rounded"
+          />
+        </div>
+        <div class="info">
+          <p
+            class="font-weight-bold"
+            style="margin: 0; font-size: 14px; line-height: 1em"
+          >
+            {{ item.asignaturaNombre }} {{ item.personaCodigo }}"
+          </p>
+          <p style="margin: 0; font-size: 10px">
+            {{ item.asignaturaNombreCorto }} | Definitiva:
+            <span
+              *ngIf="item.asignaturaNota"
+              [ngClass]="{
+                aprobada: item.asignaturaNota >= 3,
+                perdida: item.asignaturaNota < 3
+              }"
+              >{{ item.asignaturaNota | number : "1.1-1" }}</span
+            ><span class="font-weight-bold" *ngIf="!item.asignaturaNota"
+              >-</span
+            >
+            <br />
+            Grupo: {{ item.cursoGrupo }} | Sem: {{ item.cursoSemestre }} | Créd:
+            {{ item.cursoCreditos }}
+          </p>
+          <p class="font-weight-bold" style="margin: 0; font-size: 12px">
+            {{ item.personaNombre }} {{ item.personaApellido }}
+          </p>
+        </div>
+      </div>
+      <button class="request btn btn-usco-vt" type="button">
+        <i class="fa-solid fa-envelope"></i> {{ item.personaCorreoInterno }}
+      </button>
+    </div>
+  </div>
+</ion-content>

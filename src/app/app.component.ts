@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Foto } from './models/foto';
 import { FotoService } from './services/foto.service';
 import { EstamentoService } from './services/estamento.service';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { EstamentoService } from './services/estamento.service';
 export class AppComponent implements OnInit {
   links: any[] = [];
   isAuthenticated = false;
-  title = 'plantilla-ionic-web';
+  title = 'USCO A LA MANO';
   foto: Foto = {
     url: '',
   };
@@ -29,27 +30,41 @@ export class AppComponent implements OnInit {
     public fotoService: FotoService,
     private cdr: ChangeDetectorRef,
     public estamentoService: EstamentoService
-  ) {}
+  ) {
+    this.showSplash();
+  }
+
+  async showSplash() {
+    await SplashScreen.show({
+      autoHide: true,
+      showDuration: 3000,
+    });
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
+  }
 
   ngOnInit() {
+    this.links = [];
     this.links = [
       {
         titulo: 'Credencial',
         ruta: '/credenciales',
         icono: 'fa-solid fa-id-card',
-        info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
       },
     ];
     this.auth.authStatus.subscribe((status) => {
       this.isAuthenticated = status;
-      console.log('Autenticado:', this.isAuthenticated); // Para depurar
       this.cdr.detectChanges(); // Forzar la detección de cambios
       if (this.isAuthenticated) {
         this.obtenerFoto(); // Cargar foto solo si está autenticado
         this.estamentoService
           .obtenerCarnets(this.auth.user.personaCodigo)
           .subscribe((data) => {
-            console.log(data);
             for (let index = 0; index < data.length; index++) {
               switch (data[index].codigo) {
                 case 2: //ESTUDIANTE
@@ -57,15 +72,18 @@ export class AppComponent implements OnInit {
                     this.links.push(
                       {
                         titulo: 'Academico E.',
-                        ruta: '/carnet',
+                        ruta: '/academico-estudiante/matricula',
                         icono: 'fa-solid fa-building-columns',
-                        info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
                       },
                       {
                         titulo: 'Restaurante',
-                        ruta: '/carnet',
+                        ruta: '/restaurante/ventanilla',
                         icono: 'fa-solid fa-utensils',
-                        info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                      },
+                      {
+                        titulo: 'Biblioteca',
+                        ruta: '/biblioteca',
+                        icono: 'fa-solid fa-book',
                       }
                     );
                   }
@@ -73,24 +91,26 @@ export class AppComponent implements OnInit {
                 case 3: //DOCENTE
                   this.links.push({
                     titulo: 'Academico D.',
-                    ruta: '/carnet',
+                    ruta: '/academico-docente/carga-academica',
                     icono: 'fa-solid fa-building-columns',
-                    info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
                   });
                   break;
                 case 6: //INTERCAMBIO
                   this.links.push(
                     {
                       titulo: 'Academico E.',
-                      ruta: '/carnet',
-                      icono: 'fa-solid fa-building-columns',
-                      info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                      ruta: '/academico-estudiante/matricula',
+                      icono: 'fa-solid fa-building-columns ',
                     },
                     {
                       titulo: 'Restaurante',
-                      ruta: '/carnet',
-                      icono: 'fa-solid fa-utensils',
-                      info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                      ruta: '/restaurante/ventanilla',
+                      icono: 'fa-solid fa-utensils ',
+                    },
+                    {
+                      titulo: 'Biblioteca',
+                      ruta: '/biblioteca',
+                      icono: 'fa-solid fa-book ',
                     }
                   );
                   break;

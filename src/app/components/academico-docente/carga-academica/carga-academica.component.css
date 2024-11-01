@@ -1,0 +1,16 @@
+.tab-label-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.example-tab-icon {
+  margin-bottom: 5px; /* Ajusta el espaciado entre el icono y el texto */
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

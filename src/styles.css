@@ -337,6 +337,18 @@ h6 {
   );
 }
 
+#carnet-usco-rotulo-front-ionic {
+  background-image: linear-gradient(
+    to bottom,
+    #8f141b 0,
+    #8f141b 33%,
+    #dfd4a6 33%,
+    #dfd4a6 34%,
+    #ffffff 34%,
+    #ffffff 100%
+  );
+}
+
 #carnet-usco-rotulo-back-mobile {
   background-image: linear-gradient(
     to bottom,
@@ -752,5 +764,78 @@ footer {
 .Btn-regresar:active {
   transform: translate(2px, 2px);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+/* Botono regresar tab */
+.Btn-regresar-tab {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  right: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: #1e262b;
+  color: #ffffff;
+  z-index: 9999;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+/* hover effect on button width */
+.Btn-regresar-tab.hover {
+  width: 180px;
+  border-radius: 40px;
+  transition-duration: 0.3s;
+}
+
+.Btn-regresar-tab.hover .sign {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 20px;
+}
+
+.Btn-regresar-tab.hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn-regresar-tab:active {
+  transform: translate(2px, 2px);
+}

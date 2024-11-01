@@ -1,3 +1,8 @@
+<button class="Btn-regresar-tab" [routerLink]="['/inicio']">
+  <div class="sign">
+    <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+  </div>
+</button>
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
@@ -9,58 +14,20 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-select label="Default label" placeholder="Favorite Fruit">
-        <ion-select-option value="apple">Apple</ion-select-option>
-        <ion-select-option value="banana">Banana</ion-select-option>
-        <ion-select-option value="orange">Orange</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-select
-        label="Fixed label"
-        label-placement="fixed"
-        placeholder="Favorite fruit"
-      >
-        <ion-select-option value="apple">Apple</ion-select-option>
-        <ion-select-option value="banana">Banana</ion-select-option>
-        <ion-select-option value="orange">Orange</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-select label="Stacked label" label-placement="stacked">
-        <ion-select-option value="apple">Apple</ion-select-option>
-        <ion-select-option value="banana">Banana</ion-select-option>
-        <ion-select-option value="orange">Orange</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-select label="Floating label" label-placement="floating">
-        <ion-select-option value="apple">Apple</ion-select-option>
-        <ion-select-option value="banana">Banana</ion-select-option>
-        <ion-select-option value="orange">Orange</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  <ion-segment value="default">
-    <ion-segment-button value="default">
-      <ion-label>Default</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="segment">
-      <ion-label>Segment</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  
-  <ion-segment [disabled]="true" value="disabled">
-    <ion-segment-button value="disabled">
-      <ion-label>Disabled</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="segment">
-      <ion-label>Segment</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <ion-tabs class="dark-theme">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="ventanilla">
+        <i class="fa-solid fa-barcode fa-2x"></i>
+        Ventanilla
+      </ion-tab-button>
+      <ion-tab-button tab="consumo">
+        <i class="fa-solid fa-utensils fa-2x"></i>
+        Consumo
+      </ion-tab-button>
+      <ion-tab-button tab="estadisticas">
+        <i class="fa-solid fa-chart-simple fa-2x"></i>
+        Estadísticas
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

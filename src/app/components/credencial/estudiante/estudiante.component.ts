@@ -12,6 +12,8 @@ import { EstudianteService } from 'src/app/services/estudiante.service';
 import { Estudiante } from 'src/app/models/estudiante';
 import { AuthService } from 'src/app/services/auth.service';
 import { PoliticaService } from 'src/app/services/politica.service';
+import * as CryptoJS from 'crypto-js';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-estudiante',
@@ -64,7 +66,8 @@ export class EstudianteComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private alertController: AlertController
   ) {}
 
   ngAfterViewInit(): void {
@@ -103,24 +106,19 @@ export class EstudianteComponent implements OnInit {
     }, 3300); // 100ms de retraso inicial + 10000ms (10 segundos)
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Registro no encontrado',
+      message:
+        'El código no encontró ningún Estudiante asociado, por favor rectifique el código.',
+      buttons: ['Ok'],
+    });
+
+    await alert.present();
+  }
+
   ngOnInit() {
     this.mostrarFoto(this.auth.user.personaCodigo.toString());
-    if (window.screen.width <= 950) {
-      // 768px portrait
-      this.mobile = true;
-    } else {
-      this.mobile = false;
-    }
-    this.resizeObservable = fromEvent(window, 'resize');
-    this.resizeSubscription = this.resizeObservable.subscribe((evt) => {
-      if (window.screen.width <= 950) {
-        // 768px portrait
-        this.mobile = true;
-      } else {
-        this.mobile = false;
-      }
-    });
-    this.vistaMobile = '' + window.screen.width;
 
     this.buscarPoliticaEstamento();
     //this.buscarFirmaActiva();
@@ -141,23 +139,19 @@ export class EstudianteComponent implements OnInit {
               .subscribe((data) => {
                 if (JSON.stringify(data) !== '[]') {
                   this.estudiante = data;
-                  this.mostrarFoto('' + this.estudiante[0].persona.codigo);
+                  this.mostrarFoto('' + this.auth.user.personaCodigo);
                   const param1 = '2';
                   const param2 = '' + this.estudiante[0].codigo;
-                  /* const encryptedParams = this.encryptParams(param1, param2); */
-                  /* let qr = encryptedParams.replace('=', 'igual'); */
+                  const encryptedParams = this.encryptParams(param1, param2);
+                  let qr = encryptedParams.replace('=', 'igual');
                   //this.codigoQr = 'http://localhost:4200/#/publico;key=' + qr;
-                  /* this.codigoQr =
+                  this.codigoQr =
                     'https://gaitana.usco.edu.co/carnet_digital/#/publico;key=' +
-                    qr; */
+                    qr;
                 } else {
                   this.estudiante = [];
                   this.codigoQr = 'Sin resultado';
-                  /* Swal.fire({
-                    icon: 'warning',
-                    title: 'No existe',
-                    text: 'El código digitado no encontró ningún Estudiante asociado, por favor rectifique el código.',
-                  }); */
+                  this.presentAlert();
                 }
               });
           }
@@ -170,7 +164,7 @@ export class EstudianteComponent implements OnInit {
     this.tipoQr = tipo;
   }
 
- /*  encryptParams(param1: string, param2: string): string {
+  encryptParams(param1: string, param2: string): string {
     const currentDate: any = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
     let fecha = currentDate.toString();
     const encryptedParam1 = CryptoJS.AES.encrypt(param1, fecha).toString();
@@ -183,8 +177,8 @@ export class EstudianteComponent implements OnInit {
     // Concatenar los parámetros encriptados y retornarlos
     return parm1 + ',' + parm2;
   }
- */
-  /* decryptParams(encryptedParams: string): { param1: string; param2: string } {
+
+  decryptParams(encryptedParams: string): { param1: string; param2: string } {
     const currentDate: any = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
     let fecha = currentDate.toString();
     const [encryptedParam1, encryptedParam2] = encryptedParams.split(',');
@@ -197,13 +191,13 @@ export class EstudianteComponent implements OnInit {
       fecha
     ).toString(CryptoJS.enc.Utf8);
     return { param1: decryptedParam1, param2: decryptedParam2 };
-  } */
+  }
 
-/*   decifrar() {
+  decifrar() {
     let url = this.codigoQr.replace(environment.URL_BACKEND, '');
     let qr = url.replace('igual', '=');
     const decryptedParams = this.decryptParams(qr);
-  } */
+  }
 
   scrollToSection(page: HTMLElement) {
     page.scrollIntoView({ behavior: 'smooth' });
@@ -251,7 +245,7 @@ export class EstudianteComponent implements OnInit {
         reader.readAsDataURL(foto);
       } else {
         this.fotoService
-          .mirarFotoAntigua('' + this.estudiante[0].persona.codigo)
+          .mirarFotoAntigua('' + this.auth.user.personaCodigo)
           .subscribe((data) => {
             this.foto = data;
           });

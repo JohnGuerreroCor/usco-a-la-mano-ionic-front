@@ -1,0 +1,14 @@
+.white {
+  background-color: white;
+}
+
+.yellow {
+  background-color: #dfd4a6;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

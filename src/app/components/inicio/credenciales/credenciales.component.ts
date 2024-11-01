@@ -21,7 +21,6 @@ export class CredencialesComponent implements OnInit {
     this.estamentoService
       .obtenerCarnets(this.auth.user.personaCodigo)
       .subscribe((data) => {
-        console.log(data);
         for (let index = 0; index < data.length; index++) {
           switch (data[index].codigo) {
             case 1: //ADMINISTRATIVO
@@ -36,12 +35,15 @@ export class CredencialesComponent implements OnInit {
               }
               break;
             case 2: //ESTUDIANTE
-              this.links.push({
-                titulo: 'Estudiante',
-                ruta: '/estudiante',
-                icono: 'fa-solid fa-user fa-6x p-4 ion-text-center color-icon',
-                info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
-              });
+              if (data[index].tipoEstudiante != 0) {
+                this.links.push({
+                  titulo: 'Estudiante',
+                  ruta: '/estudiante',
+                  icono:
+                    'fa-solid fa-user fa-6x p-4 ion-text-center color-icon',
+                  info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                });
+              }
               break;
             case 3: //DOCENTE
               this.links.push({

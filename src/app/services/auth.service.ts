@@ -82,12 +82,15 @@ export class AuthService {
   login(usuario: Usuario): Observable<any> {
     const url = this.url + '/oauth/token';
     const credenciales = btoa('angularapp' + ':' + '12345');
+
+    // Encabezados configurados para evitar la solicitud preflight
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: 'Basic ' + credenciales,
     });
-    let params = new URLSearchParams();
 
+    // Configuración de los parámetros en formato URL encoded
+    const params = new URLSearchParams();
     params.set('grant_type', 'password');
     params.set('username', usuario.username);
     params.set('password', usuario.password);
@@ -112,68 +115,7 @@ export class AuthService {
             .then((toast) => {
               toast.present(); // Muestra el toast
             });
-          if (e) {
-            if (e.error.error_description == 'Bad credentials') {
-              /*  const Toast = swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', swal.stopTimer)
-                toast.addEventListener('mouseleave', swal.resumeTimer)
-              }
-            });
-
-            Toast.fire({
-              icon: 'error',
-              title: 'Error de inicio de sesión'
-            }); */
-              this.toastController
-                .create({
-                  message: e,
-                  duration: 2500,
-                  position: 'top',
-                  color: 'danger',
-                  icon: 'close-circle', // Puedes usar un icono de Ionic
-                })
-                .then((toast) => {
-                  toast.present(); // Muestra el toast
-                });
-
-              return [throwError(e), false];
-            }
-            /* const Toast = swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', swal.stopTimer)
-              toast.addEventListener('mouseleave', swal.resumeTimer)
-            }
-          });
-
-          Toast.fire({
-            icon: 'error',
-            title: 'Error de inicio de sesión'
-          }); */
-            /*  this.toastController
-              .create({
-                message: 'Error de inicio de sesión.',
-                duration: 2500,
-                position: 'top',
-                color: 'danger',
-                icon: 'close-circle', // Puedes usar un icono de Ionic
-              })
-              .then((toast) => {
-                toast.present(); // Muestra el toast
-              }); */
-            return throwError(e);
-          }
-          return throwError(e);
+          return throwError(e); // Retorna el error
         })
       );
   }

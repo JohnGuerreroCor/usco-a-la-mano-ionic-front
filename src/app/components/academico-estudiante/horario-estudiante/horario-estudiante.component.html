@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Horario</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content" *ngIf="(dias | json) == '[]'">
+    <ion-grid>
+      <ion-row class="text-center">
+        <ion-col
+          ><img src="assets/precarga-usco.gif" class="img-fluid" alt="USCO"
+        /></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="mt-3" *ngIf="(dias | json) != '[]'">
+    <ion-list>
+      <ion-item>
+        <ion-select
+          aria-label="Fruit"
+          interface="action-sheet"
+          placeholder="Seleccione el periodo"
+          [(ngModel)]="periodo"
+          (ngModelChange)="obtenerMatriculaActualPorPeriodo($event)"
+          fill="outline"
+        >
+          <ion-select-option
+            *ngFor="let periodo of listadoPeriodos"
+            [value]="periodo.periodo"
+            >{{ periodo.periodo | periodo }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-segment [value]="0" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button *ngFor="let dia of dias; let i = index" [value]="i">
+        <ion-label *ngIf="dias.length <= 3">{{ dia.diaNombre }}</ion-label>
+        <ion-label *ngIf="dias.length > 3">{{
+          dia.diaNombre | slice : 0 : 3
+        }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div
+      *ngFor="let dia of dias; let i = index"
+      [hidden]="selectedSegment !== i"
+    >
+      <ng-container *ngFor="let item of horario">
+        <ng-container *ngIf="dia.diaNombre === item.diaNombre">
+          <ion-card>
+            <table
+              class="table table-bordered table-striped mb-0"
+              style="font-size: 11px"
+            >
+              <thead>
+                <tr
+                  class="text-white text-left"
+                  style="background-color: #5c0e12"
+                >
+                  <td colspan="2">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    {{ item.asignaturaNombre }} -
+                    {{ item.asignaturaNombreCorto }}
+                  </td>
+                </tr>
+              </thead>
+              <tbody
+                [ngClass]="{
+                  white: item.diaNombre != fechaYHora.dia,
+                  yellow:
+                    item.diaNombre == fechaYHora.dia && verificarIntervalo(item)
+                }"
+              >
+                <tr>
+                  <th class="p-2" scope="col">Docente:</th>
+                  <td class="p-2">
+                    {{ item.docenteNombre }} {{ item.docenteApellido }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="p-2" scope="col">Bloque:</th>
+                  <td class="p-2">
+                    {{ item.bloque }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="p-2" scope="col">Salón:</th>
+                  <td class="p-2">{{ item.salon }}</td>
+                </tr>
+                <tr>
+                  <th class="p-2" scope="col">Hora:</th>
+                  <td class="p-2">
+                    {{ item.horaInicio }} - {{ item.horaFin }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ion-card>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

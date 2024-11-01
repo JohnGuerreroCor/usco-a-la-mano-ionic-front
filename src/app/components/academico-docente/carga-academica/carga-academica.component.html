@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carga académica</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content" *ngIf="(listadoCursos | json) == '[]'">
+    <ion-grid>
+      <ion-row class="text-center">
+        <ion-col
+          ><img src="assets/precarga-usco.gif" class="img-fluid" alt="USCO"
+        /></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-list [inset]="true" *ngIf="(listadoCursos | json) != '[]'">
+    <ion-item
+      [button]="true"
+      color="dark"
+      *ngFor="let curso of listadoCursos; let i = index"
+      [routerLink]="[
+        '/academico-docente/listado-estudiantes',
+        curso.cursoCodigo
+      ]"
+    >
+      <ion-icon
+        color="light"
+        slot="start"
+        name="list-circle"
+        size="large"
+      ></ion-icon>
+      <ion-label
+        >{{ curso.cursoNombre }} <br />
+        <small
+          >{{ curso.cursoNombreCorto }} - {{ curso.cursoCodigo }}
+          <br />
+          {{ curso.sedeNombre }} <br />
+          Estudiantes: {{ curso.cantidadEstudiantes }} | Grupo:
+          {{ curso.cursoGrupo }}</small
+        ></ion-label
+      >
+      <ion-note slot="end"><i class="fa-solid fa-chevron-right"></i></ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

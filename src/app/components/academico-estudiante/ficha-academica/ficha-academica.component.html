@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="background-color: #1e262b; color: white"
+      >Ficha Académica <br />
+      <span *ngIf="(fichaAcademica | json) != '[]'"
+        >Puntaje Calificado: {{ puntajeCalificadoPonderado }}</span
+      ></ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="content" *ngIf="(fichaAcademica | json) == '[]'">
+    <ion-grid>
+      <ion-row class="text-center">
+        <ion-col
+          ><img src="assets/precarga-usco.gif" class="img-fluid" alt="USCO"
+        /></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="(fichaAcademica | json) != '[]'">
+    <ion-accordion-group [value]="'first'">
+      <ion-accordion value="first" [readonly]="true">
+        <ion-item slot="header" color="lihgt">
+          <ion-label>Información general</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <table
+            class="table table-striped"
+            style="font-size: 12px"
+            *ngFor="let item of fichaAcademicaRegistro"
+          >
+            <tbody>
+              <tr>
+                <th scope="row">Facultad</th>
+                <td>{{ item.facultadNombre }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Programa</th>
+                <td>{{ item.programaNombre }} {{ item.sedeNombre }}</td>
+              </tr>
+              <tr>
+                <th scope="row">SNIES</th>
+                <td>{{ item.sniesCodigo }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Plan</th>
+                <td>{{ item.planAcademico }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Créditos</th>
+                <td>
+                  {{ item.creditosAprobados }} de {{ item.creditosTotales }}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Puntaje calificado</th>
+                <td class="font-weight-bold">
+                  {{ puntajeCalificadoPonderado }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+    <ion-accordion-group [value]="'accordion-0'">
+      <ion-accordion
+        *ngFor="let ficha of fichaAcademica; let i = index"
+        [value]="'accordion-' + i"
+      >
+        <!-- Encabezado del acordeón -->
+        <ion-item slot="header" color="dark">
+          <ion-label>
+            <div style="font-size: 12px; font-weight: bold">
+              <i class="fa-solid fa-list-check"></i> Periodo:
+              {{ ficha.periodo | periodo }} <br />
+              Promedio ponderado:
+              {{ ficha.promedioPonderado | number : "1.1-1" }}
+            </div>
+          </ion-label>
+        </ion-item>
+
+        <!-- Contenido del acordeón -->
+        <div class="ion-padding" slot="content">
+          <ng-container *ngFor="let curso of listadoCursos">
+            <ng-container *ngIf="ficha.periodo === curso.periodoNombre">
+              <table
+                class="table table-bordered table-striped"
+                style="font-size: 12px"
+              >
+                <thead>
+                  <tr class="bg-usco-vt-d6 text-white text-left">
+                    <td colspan="3" scope="col">
+                      <i class="fa-solid fa-bookmark"></i>
+                      {{ curso.asignaturaNombre }} -
+                      {{ curso.asignaturaNombreCorto }}
+                    </td>
+                  </tr>
+                  <tr class="text-center">
+                    <th class="p-1" scope="col">Créditos</th>
+                    <th class="p-1" scope="col">Semestre</th>
+                    <th class="p-1" scope="col">Calificación</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td class="p-1">{{ curso.cursoCreditos }}</td>
+                    <td class="p-1">{{ curso.cursoSemestre }}</td>
+                    <td class="p-1 font-weight-bold">
+                      <span
+                        *ngIf="
+                          curso.asignaturaNota >= 3 &&
+                          ficha.promedioPonderado != null
+                        "
+                        >{{ curso.asignaturaNota | number : "1.1-1" }}</span
+                      >
+                      <span
+                        *ngIf="
+                          curso.asignaturaNota < 3 &&
+                          ficha.promedioPonderado != null
+                        "
+                        style="color: red"
+                        >{{ curso.asignaturaNota | number : "1.1-1" }}</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+</ion-content>

@@ -1,0 +1,232 @@
+<ion-content>
+  <div class="content">
+    <div class="container slide-in-fwd-center">
+      <ion-list class="mt-2">
+        <ion-item>
+          <ion-select
+            aria-label="Fruit"
+            interface="action-sheet"
+            placeholder="Restaurante"
+            [value]="sede"
+            (selectionChange)="obtenerTiquetesSedes(); obtenerRacionesSedes()"
+            fill="outline"
+          >
+            <ion-select-option
+              *ngFor="let item of sedes"
+              [value]="item.uaaCodigo"
+              >{{ item.uaaNombre }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <div class="row p-3">
+        <div class="col">
+          <div
+            class="card-usco-carnet carnet-usco-body pt-2 pl-2 pr-2 shadow text-center"
+          >
+            <div class="row p-2" *ngIf="(tiquetes | json) == '[]'">
+              <div class="col">
+                <div class="alert alert-warning mt-3" role="alert">
+                  <h4 class="alert-heading font-weight-bold">¡Por favor!</h4>
+                  <p>
+                    Seleccione la sede en la cual se encuentra actualmente o la
+                    sede a la cual se dirige para consultar la disponibilidad.
+                  </p>
+                  <hr />
+                  <p class="mb-0">
+                    Tenga en cuenta que el tiquete adquirido solo puede ser
+                    usado donde se hizo efectiva la compra.
+                  </p>
+                  <hr />
+                  <p class="mb-0">
+                    Para alternar entre las estadísticas de ventas y consumo,
+                    simplemente toque esta tarjeta para cambiar de vista.
+                    Agradecemos su atención.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <div
+                  class="carnet"
+                  [class.flipped]="flipped"
+                  (click)="flipCard()"
+                >
+                  <div class="front">
+                    <div
+                      class="row text-white"
+                      *ngIf="(tiquetes | json) != '[]'"
+                    >
+                      <div class="col">
+                        <div
+                          class="container pt-4 pb-4"
+                          [ngClass]="{
+                            desayuno:
+                              tiquetes[0]!.restauranteTipoServicioCodigo == 1,
+                            almuerzo:
+                              tiquetes[0]!.restauranteTipoServicioCodigo == 2,
+                            cena:
+                              tiquetes[0]!.restauranteTipoServicioCodigo == 3
+                          }"
+                        >
+                          <!-- #003561 -->
+                          <div
+                            class="mt-4 mb-3"
+                            [ngClass]="{
+                              desayunoReloj:
+                                tiquetes[0]!.restauranteTipoServicioCodigo == 1,
+                              almuerzoReloj:
+                                tiquetes[0]!.restauranteTipoServicioCodigo == 2,
+                              cenaReloj:
+                                tiquetes[0]!.restauranteTipoServicioCodigo == 3
+                            }"
+                          >
+                            {{ hora }}
+                          </div>
+                          <img
+                            src="assets/tiquete.png"
+                            alt="USCO"
+                            style="width: 130px"
+                          />
+                          <!--  <i class="fa-solid fa-utensils fa-3x mr-3"></i
+                              ><i class="fa-solid fa-bowl-food fa-3x"></i> -->
+                          <h1 class="font-weight-bold" style="font-size: 60px">
+                            {{
+                              tiquetes[0]!.restauranteCantidaTiquetesDisponibles
+                            }}
+                          </h1>
+
+                          <h5 class="font-weight-bold">TIQUETES DISPONIBLES</h5>
+                          <h5 class="font-weight-bold">
+                            {{
+                              tiquetes[0]!.restauranteTipoServicioNombre
+                                | uppercase
+                            }}
+                          </h5>
+                          <br />
+                          <p style="font-size: 12px">
+                            Hora de servicio
+                            {{ tiquetes[0]!.restauranteHoraServicioInicio }}
+                            - {{ tiquetes[0]!.restauranteHoraServicioFin }}
+                          </p>
+                          <p style="font-size: 12px">
+                            {{ tiquetes[0]!.uaaRestauranteNombre }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="row text-center"
+                      *ngIf="(tiquetes | json) != '[]'"
+                    >
+                      <div class="col">
+                        <div class="alert alert-light">
+                          <p style="font-size: 12px">
+                            Convenciones<br /><i
+                              class="fas fa-stop"
+                              style="color: #003561"
+                            ></i>
+                            Desayuno |
+                            <i class="fas fa-stop" style="color: #8f141b"> </i>
+                            Almuerzo |
+                            <i class="fas fa-stop" style="color: #7c0b69"></i>
+                            Cena
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="back">
+                    <div
+                      class="row text-white"
+                      *ngIf="(tiquetes | json) != '[]'"
+                    >
+                      <div class="col">
+                        <div
+                          class="container pt-4 pb-4"
+                          [ngClass]="{
+                            desayuno:
+                              raciones[0]!.restauranteTipoServicioCodigo == 1,
+                            almuerzo:
+                              raciones[0]!.restauranteTipoServicioCodigo == 2,
+                            cena:
+                              raciones[0]!.restauranteTipoServicioCodigo == 3
+                          }"
+                        >
+                          <!-- #003561 -->
+                          <div
+                            class="mt-4 mb-3"
+                            [ngClass]="{
+                              desayunoReloj:
+                                raciones[0]!.restauranteTipoServicioCodigo == 1,
+                              almuerzoReloj:
+                                raciones[0]!.restauranteTipoServicioCodigo == 2,
+                              cenaReloj:
+                                raciones[0]!.restauranteTipoServicioCodigo == 3
+                            }"
+                          >
+                            {{ hora }}
+                          </div>
+                          <img
+                            src="assets/racion.png"
+                            alt="USCO"
+                            style="width: 120px"
+                          />
+                          <!--  <i class="fa-solid fa-utensils fa-3x mr-3"></i
+                              ><i class="fa-solid fa-bowl-food fa-3x"></i> -->
+                          <h1 class="font-weight-bold" style="font-size: 60px">
+                            {{
+                              raciones[0]!.restauranteCantidaRacionesDisponibles
+                            }}
+                          </h1>
+
+                          <h5 class="font-weight-bold">RACIONES DISPONIBLES</h5>
+                          <h5 class="font-weight-bold">
+                            {{
+                              raciones[0]!.restauranteTipoServicioNombre
+                                | uppercase
+                            }}
+                          </h5>
+                          <br />
+                          <p style="font-size: 12px">
+                            Hora de atención
+                            {{ raciones[0]!.restauranteHoraServicioInicio }}
+                            - {{ raciones[0]!.restauranteHoraServicioFin }}
+                          </p>
+                          <p style="font-size: 12px">
+                            {{ raciones[0]!.uaaRestauranteNombre }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="row text-center"
+                      *ngIf="(tiquetes | json) != '[]'"
+                    >
+                      <div class="col">
+                        <div class="alert alert-light">
+                          <p style="font-size: 12px">
+                            Convenciones<br /><i
+                              class="fas fa-stop"
+                              style="color: #003561"
+                            ></i>
+                            Desayuno |
+                            <i class="fas fa-stop" style="color: #8f141b"> </i>
+                            Almuerzo |
+                            <i class="fas fa-stop" style="color: #7c0b69"></i>
+                            Cena
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

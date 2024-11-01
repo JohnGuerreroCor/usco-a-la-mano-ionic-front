@@ -1,0 +1,29 @@
+<button class="Btn-regresar-tab" [routerLink]="['/inicio']">
+  <div class="sign">
+    <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+  </div>
+</button>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Consultas académicas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="carga-academica">
+        <i class="fa-solid fa-list fa-2x"></i>
+        Carga
+      </ion-tab-button>
+      <ion-tab-button tab="horario-docente">
+        <i class="fa-solid fa-table-list fa-2x"></i>
+        Horario
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
