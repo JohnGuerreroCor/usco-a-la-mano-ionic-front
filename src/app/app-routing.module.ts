@@ -26,6 +26,9 @@ import { DocenteComponent } from './components/credencial/docente/docente.compon
 import { IntercambioComponent } from './components/credencial/intercambio/intercambio.component';
 import { VirtualComponent } from './components/credencial/virtual/virtual.component';
 import { PublicoComponent } from './components/publico/publico.component';
+import { SedesComponent } from './components/inicio/sedes/sedes.component';
+import { SubSedesComponent } from './components/inicio/sedes/sub-sedes/sub-sedes.component';
+import { CentralComponent } from './components/campus/neiva/central/central.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -33,6 +36,8 @@ const routes: Routes = [
   { path: 'token', component: TokenComponent },
   { path: 'publico', component: PublicoComponent },
   { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
+  { path: 'sedes', component: SedesComponent, canActivate: [AuthGuard] },
+  { path: 'sub-sedes', component: SubSedesComponent, canActivate: [AuthGuard] },
   {
     path: 'biblioteca',
     component: BibliotecaComponent,
@@ -137,6 +142,10 @@ const routes: Routes = [
   {
     path: 'listado-estudiantes/:id',
     component: ListadoEstudiantesComponent,
+  },
+  {
+    path: 'campus-neiva-central',
+    component: CentralComponent,
   },
   { path: '**', redirectTo: 'login' },
 ];

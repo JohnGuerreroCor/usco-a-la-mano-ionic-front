@@ -37,11 +37,16 @@ import { ListadoEstudiantesComponent } from './components/academico-docente/list
 import { BibliotecaComponent } from './components/biblioteca/biblioteca.component';
 import { PeriodoPipe } from './pipes/periodo.pipe';
 import { PublicoComponent } from './components/publico/publico.component';
+import { SedesComponent } from './components/inicio/sedes/sedes.component';
+import { SubSedesComponent } from './components/inicio/sedes/sub-sedes/sub-sedes.component';
+import { CentralComponent } from './components/campus/neiva/central/central.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
+    SedesComponent,
+    SubSedesComponent,
     RestauranteComponent,
     VentaComponent,
     ConsumoComponent,
@@ -66,6 +71,7 @@ import { PublicoComponent } from './components/publico/publico.component';
     ListadoEstudiantesComponent,
     BibliotecaComponent,
     PublicoComponent,
+    CentralComponent,
     PeriodoPipe
   ],
   imports: [

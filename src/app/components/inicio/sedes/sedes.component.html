@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sedes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <ion-grid>
+      <!-- Caso cuando la longitud es par o todos menos el último si es impar -->
+      <ion-row>
+        <ng-container *ngFor="let link of links; let i = index">
+          <ion-col
+            *ngIf="i < links.length - (links.length % 2 !== 0 ? 1 : 0)"
+            size="6"
+          >
+            <ion-card
+              class="ion-text-center"
+              [button]="true"
+              [routerLink]="link.ruta"
+            >
+              <img [src]="link.img" [alt]="link.titulo"/>
+              <ion-card-header class="ion-text-center">
+                <ion-card-title class="font-usco-vt">
+                  <strong>{{ link.titulo }}</strong>
+                </ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+      <!-- Caso cuando la longitud de links es impar (solo el último elemento) -->
+      <ion-row *ngIf="links.length % 2 !== 0">
+        <!-- Mostrar solo el último elemento -->
+        <ion-col size="6" offset="3">
+          <ion-card
+            class="ion-text-center"
+            [button]="true"
+            [routerLink]="links[links.length - 1].ruta"
+          >
+            <i
+              class="fa-solid fa-user-tie fa-6x p-4 ion-text-center color-icon"
+            ></i>
+            <ion-card-header class="ion-text-center">
+              <ion-card-title class="font-usco-vt">
+                <strong>{{ links[links.length - 1].titulo }}</strong>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -49,13 +49,15 @@
           <ion-card>
             <table
               class="table table-bordered table-striped mb-0"
+              [ngClass]="{
+                'table-light': item.diaNombre !== fechaYHora.dia,
+                'table-warning':
+                  item.diaNombre === fechaYHora.dia && verificarIntervalo(item)
+              }"
               style="font-size: 11px"
             >
               <thead>
-                <tr
-                  class="text-white text-left"
-                  style="background-color: #5c0e12"
-                >
+                <tr class="text-left">
                   <td colspan="2">
                     <i class="fa-solid fa-calendar-day"></i>
                     {{ item.asignaturaNombre }} -
@@ -63,13 +65,7 @@
                   </td>
                 </tr>
               </thead>
-              <tbody
-                [ngClass]="{
-                  white: item.diaNombre != fechaYHora.dia,
-                  yellow:
-                    item.diaNombre == fechaYHora.dia && verificarIntervalo(item)
-                }"
-              >
+              <tbody>
                 <tr>
                   <th class="p-2" scope="col">Docente:</th>
                   <td class="p-2">

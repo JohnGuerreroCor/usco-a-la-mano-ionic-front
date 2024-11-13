@@ -21,6 +21,11 @@ export class InicioComponent implements OnInit {
         ruta: '/credenciales',
         icono: 'fa-solid fa-id-card fa-6x p-4 ion-text-center color-icon',
       },
+      {
+        titulo: 'Campus',
+        ruta: '/sedes',
+        icono: 'fa-solid fa-map-location-dot fa-6x p-4 ion-text-center color-icon',
+      },
     ];
     this.estamentoService
       .obtenerCarnets(this.auth.user.personaCodigo)
