@@ -2,3 +2,8 @@
   width: 35px; /* Ajusta el tamaño del avatar */
   height: 35px;
 }
+
+.footer-tabs {
+  position: absolute;
+  bottom: 0;
+}

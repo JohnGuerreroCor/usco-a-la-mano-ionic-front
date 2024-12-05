@@ -19,12 +19,16 @@ export class InicioComponent implements OnInit {
       {
         titulo: 'Credencial',
         ruta: '/credenciales',
-        icono: 'fa-solid fa-id-card fa-6x p-4 ion-text-center color-icon',
+        icono: 'fa-solid fa-id-card fa-3x color-icon',
+        descripcion:
+          'Ingresa al carnet que te identifica como miembro de la Universidad.',
       },
       {
         titulo: 'Campus',
         ruta: '/sedes',
-        icono: 'fa-solid fa-map-location-dot fa-6x p-4 ion-text-center color-icon',
+        icono: 'fa-solid fa-map-location-dot fa-3x color-icon',
+        descripcion:
+          'Visualiza cada una de nuestras sedes de la Universidad.',
       },
     ];
     this.estamentoService
@@ -38,20 +42,23 @@ export class InicioComponent implements OnInit {
                   {
                     titulo: 'Academico E.',
                     ruta: '/academico-estudiante/matricula',
-                    icono:
-                      'fa-solid fa-building-columns fa-6x p-4 ion-text-center color-icon',
+                    icono: 'fa-solid fa-building-columns fa-3x  color-icon',
+                    descripcion:
+                      'Ingresa a los servicios de ficha académica y horario.',
                   },
                   {
                     titulo: 'Restaurante',
                     ruta: '/restaurante/ventanilla',
-                    icono:
-                      'fa-solid fa-utensils fa-6x p-4 ion-text-center color-icon',
+                    icono: 'fa-solid fa-utensils fa-3x  color-icon',
+                    descripcion:
+                      'Ingresa al servicio de compra y canjeo de tiquete.',
                   },
                   {
                     titulo: 'Biblioteca',
                     ruta: '/biblioteca',
-                    icono:
-                      'fa-solid fa-book fa-6x p-4 ion-text-center color-icon',
+                    icono: 'fa-solid fa-book fa-3x  color-icon',
+                    descripcion:
+                      'Ingresa al servicio de préstamo de libros.',
                   }
                 );
               }
@@ -60,29 +67,33 @@ export class InicioComponent implements OnInit {
               this.links.push({
                 titulo: 'Academico D.',
                 ruta: '/academico-docente/carga-academica',
-                icono:
-                  'fa-solid fa-building-columns fa-6x p-4 ion-text-center color-icon',
+                icono: 'fa-solid fa-building-columns fa-3x  color-icon',
+                descripcion:
+                  'Ingresa a los servicios de carga académica y horario.',
               });
               break;
             case 6: //INTERCAMBIO
               this.links.push(
                 {
-                  titulo: 'Academico E.',
+                  titulo: 'Academico Estudiante',
                   ruta: '/academico-estudiante/matricula',
-                  icono:
-                    'fa-solid fa-building-columns fa-6x p-4 ion-text-center color-icon',
+                  icono: 'fa-solid fa-building-columns fa-3x  color-icon',
+                  descripcion:
+                    'Ingresa a los servicios de matrícula, ficha académica y horario.',
                 },
                 {
                   titulo: 'Restaurante',
                   ruta: '/restaurante/ventanilla',
-                  icono:
-                    'fa-solid fa-utensils fa-6x p-4 ion-text-center color-icon',
+                  icono: 'fa-solid fa-utensils fa-3x  color-icon',
+                  descripcion:
+                    'Ingresa al servicio de compra y canjeo de tiquete.',
                 },
                 {
                   titulo: 'Biblioteca',
                   ruta: '/biblioteca',
-                  icono:
-                    'fa-solid fa-book fa-6x p-4 ion-text-center color-icon',
+                  icono: 'fa-solid fa-book fa-3x  color-icon',
+                  descripcion:
+                    'Ingresa al servicio de préstamo de libros.',
                 }
               );
               break;

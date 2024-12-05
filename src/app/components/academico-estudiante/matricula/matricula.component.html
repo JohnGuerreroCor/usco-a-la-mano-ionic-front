@@ -4,24 +4,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list class="mt-2">
-    <ion-item>
-      <ion-select
-        aria-label="Fruit"
-        interface="action-sheet"
-        placeholder="Seleccione el periodo"
-        [(ngModel)]="periodo"
-        (ngModelChange)="obtenerMatriculaActualPorPeriodo($event)"
-        fill="outline"
-      >
-        <ion-select-option
-          *ngFor="let periodo of listadoPeriodos"
-          [value]="periodo.periodo"
-          >{{ periodo.periodo | periodo }}</ion-select-option
-        >
-      </ion-select>
-    </ion-item>
-  </ion-list>
   <div class="content" *ngIf="(listadoCursos | json) == '[]'">
     <ion-grid>
       <ion-row class="text-center">
@@ -31,8 +13,25 @@
       </ion-row>
     </ion-grid>
   </div>
-
   <div class="container slide-in-fwd-center">
+    <ion-row class="ion-padding-top">
+      <ion-col
+        ><ion-select
+          aria-label="Fruit"
+          interface="action-sheet"
+          placeholder="Seleccione el periodo"
+          [(ngModel)]="periodo"
+          (ngModelChange)="obtenerMatriculaActualPorPeriodo($event)"
+          fill="outline"
+        >
+          <ion-select-option
+            *ngFor="let periodo of listadoPeriodos"
+            [value]="periodo.periodo"
+            >{{ periodo.periodo | periodo }}</ion-select-option
+          >
+        </ion-select></ion-col
+      >
+    </ion-row>
     <div *ngFor="let item of listadoCursos" class="card shadow-sm mt-3">
       <div class="infos mb-2">
         <div class="image">

@@ -55,3 +55,14 @@
   justify-content: center;
   height: 100%;
 }
+
+
+.qr-container {
+  border-radius: 15px; /* Borde redondeado */
+  overflow: hidden; /* Asegura que el QR no se salga del contenedor */
+  display: inline-block; /* Ajusta al tamaño del QR */
+}
+
+ion-content {
+  --background: #F0F4F9;
+}

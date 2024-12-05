@@ -104,17 +104,6 @@ export class AuthService {
           this.authStatusSubject.next(true); // Actualiza el estado de autenticación
         }),
         catchError((e) => {
-          this.toastController
-            .create({
-              message: e.error.error_description,
-              duration: 2500,
-              position: 'top',
-              color: 'danger',
-              icon: 'close-circle', // Puedes usar un icono de Ionic
-            })
-            .then((toast) => {
-              toast.present(); // Muestra el toast
-            });
           return throwError(e); // Retorna el error
         })
       );

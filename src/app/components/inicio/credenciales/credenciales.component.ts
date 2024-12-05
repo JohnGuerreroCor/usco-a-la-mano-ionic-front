@@ -28,9 +28,10 @@ export class CredencialesComponent implements OnInit {
                 this.links.push({
                   titulo: 'Administrativo',
                   ruta: '/administrativo',
-                  icono:
-                    'fa-solid fa-user-tie fa-6x p-4 ion-text-center color-icon',
+                  icono: 'fa-solid fa-user-tie fa-3x  color-icon',
                   info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                  descripcion:
+                    'Identifícate como administrativo de la Universidad Surcolomiana',
                 });
               }
               break;
@@ -39,9 +40,10 @@ export class CredencialesComponent implements OnInit {
                 this.links.push({
                   titulo: 'Estudiante',
                   ruta: '/estudiante',
-                  icono:
-                    'fa-solid fa-user fa-6x p-4 ion-text-center color-icon',
+                  icono: 'fa-solid fa-user fa-3x  color-icon',
                   info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                  descripcion:
+                    'Identifícate como estudiante de la Universidad Surcolomiana',
                 });
               }
               break;
@@ -49,36 +51,40 @@ export class CredencialesComponent implements OnInit {
               this.links.push({
                 titulo: 'Docente',
                 ruta: '/docente',
-                icono:
-                  'fa-solid fa-chalkboard-user fa-6x p-4 ion-text-center color-icon',
+                icono: 'fa-solid fa-chalkboard-user fa-3x  color-icon',
                 info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                descripcion:
+                  'Identifícate como docente de la Universidad Surcolomiana',
               });
               break;
             case 4: //GRADUADO
               this.links.push({
                 titulo: 'Graduado',
                 ruta: '/graduado',
-                icono:
-                  'fa-solid fa-graduation-cap fa-6x p-4 ion-text-center color-icon',
+                icono: 'fa-solid fa-graduation-cap fa-3x  color-icon',
                 info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                descripcion:
+                  'Identifícate como graduado de la Universidad Surcolomiana',
               });
               break;
             case 5: //VIRTUAL
               this.links.push({
                 titulo: 'Est. Virtual',
                 ruta: '/estudiante-virtual',
-                icono:
-                  'fa-solid fa-computer fa-6x p-4 ion-text-center color-icon',
+                icono: 'fa-solid fa-computer fa-3x  color-icon',
                 info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                descripcion:
+                  'Identifícate como estudiante virtual de la Universidad Surcolomiana',
               });
               break;
             case 6: //INTERCAMBIO
               this.links.push({
                 titulo: 'Est. Intercmabio',
                 ruta: '/estudiante-intercambio',
-                icono:
-                  'fa-solid fa-building-columns fa-6x p-4 ion-text-center color-icon',
+                icono: 'fa-solid fa-building-columns fa-3x  color-icon',
                 info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
+                descripcion:
+                  'Identifícate como estudiante de intercambio de la Universidad Surcolomiana',
               });
               break;
           }

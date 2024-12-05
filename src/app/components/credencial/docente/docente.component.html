@@ -5,7 +5,11 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
     </ion-buttons>
-    <ion-title>Docente</ion-title>
+    <ion-title
+      class="ion-text-center"
+      style="padding-left: 0; padding-right: 40px"
+      >Docente</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -53,7 +57,7 @@
               <ion-card-header>
                 <ion-card-title
                   ><img
-                    src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+                    src="assets/universidad-surcolombiana-multicampos.png"
                     class="img-fluid"
                 /></ion-card-title>
               </ion-card-header>
@@ -77,7 +81,7 @@
                   <div class="col">
                     <h6
                       *ngIf="(docente | json) != '[]'"
-                      class="font-usco-default font-usco-gr text-uppercase"
+                      class="font-usco-vt text-uppercase"
                     >
                       <strong
                         >{{ docente[0].persona.nombre }}
@@ -92,17 +96,15 @@
                       *ngIf="(docente | json) != '[]'"
                       class="font-usco-gr text-uppercase"
                     >
-                      <strong
-                        >{{ docente[0].persona.documento }}:
-                        {{ docente[0].persona.identificacion }}</strong
-                      >
+                      {{ docente[0].persona.documento }}:
+                      {{ docente[0].persona.identificacion }}
                     </h6>
                   </div>
                 </div>
                 <div class="row mb-2">
                   <div class="col">
-                    <h6 *ngIf="(docente | json) != '[]'" class="font-usco-vt">
-                      <strong>R.H: {{ persona[0].grupoSanguineo }}</strong>
+                    <h6 *ngIf="(docente | json) != '[]'" class="font-usco-gr">
+                      R.H: {{ persona[0].grupoSanguineo }}
                     </h6>
                   </div>
                 </div>
@@ -110,7 +112,7 @@
                   <div class="col">
                     <h6
                       *ngIf="(docente | json) != '[]'"
-                      class="font-usco-default font-usco-gr text-uppercase"
+                      class="font-usco-vt text-uppercase"
                     >
                       <strong
                         >{{ docente[0].sede }} -
@@ -121,9 +123,19 @@
                 </div>
                 <div class="row mt-3">
                   <div class="col">
-                    <h6 class="font-usco-default font-usco-vt text-uppercase">
-                      <strong>{{ docente[0].vinculacionNombre }}</strong>
-                    </h6>
+                    <div
+                      class="d-flex align-items-center justify-content-center position-relative"
+                    >
+                      <h6
+                        *ngIf="(docente | json) != '[]'"
+                        class="font-usco-gr text-uppercase"
+                      >
+                        {{ docente[0].vinculacionNombre }}
+                      </h6>
+                      <span class="font-usco-gr position-absolute end-0"
+                        ><img src="assets/qr_code_2.svg" alt=""
+                      /></span>
+                    </div>
                   </div>
                 </div>
               </ion-card-content>
@@ -139,38 +151,45 @@
               <ion-card-header>
                 <ion-card-title
                   ><img
-                    src="assets/universidad-surcolombiana-vp.png"
-                    class="img-fluid p-3 firma-usco"
+                    src="assets/universidad-surcolombiana-multicampos.png"
+                    class="img-fluid"
                 /></ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-grid fixed>
                   <ion-row>
                     <ion-col>
-                      <qrcode
-                        [qrdata]="codigoQr"
-                        [width]="300"
-                        colorLight="#ffffff"
-                        colorDark="#1E262B"
-                        [errorCorrectionLevel]="'M'"
-                      ></qrcode
+                      <div class="qr-container">
+                        <qrcode
+                          [qrdata]="codigoQr"
+                          [width]="250"
+                          colorLight="#ffffff"
+                          colorDark="#1E262B"
+                          [errorCorrectionLevel]="'M'"
+                        ></qrcode></div
                     ></ion-col>
                   </ion-row>
                   <ion-row *ngIf="(politicaDocente | json) != '[]'">
                     <ion-col
-                      ><h6
-                        class="font-usco-default font-usco-bl pre leyenda-mobile"
-                      >
+                      ><small class="pre">
                         {{ politicaDocente[0].descripcion }}
-                      </h6></ion-col
+                      </small></ion-col
                     >
                   </ion-row>
                   <ion-row>
                     <ion-col
-                      ><h6 class="font-usco-vt">
-                        <strong>CÓDIGO QR PARA CONVENIOS</strong>
-                      </h6></ion-col
-                    >
+                      ><div
+                        class="d-flex align-items-center justify-content-center position-relative"
+                      >
+                        <h6
+                          class="font-usco-vt administrativo text-uppercase m-0 text-center flex-grow-1"
+                        >
+                          <strong>APLICA PARA CONVENIOS</strong>
+                        </h6>
+                        <span class="font-usco-gr position-absolute end-0"
+                          ><img src="assets/Frame 21.svg"
+                        /></span></div
+                    ></ion-col>
                   </ion-row>
                 </ion-grid>
               </ion-card-content>
@@ -186,8 +205,8 @@
               <ion-card-header>
                 <ion-card-title
                   ><img
-                    src="assets/universidad-surcolombiana-vp.png"
-                    class="img-fluid p-3 firma-usco"
+                    src="assets/universidad-surcolombiana-multicampos.png"
+                    class="img-fluid"
                 /></ion-card-title>
               </ion-card-header>
               <ion-card-content>
@@ -195,26 +214,32 @@
                   <ion-row>
                     <ion-col>
                       <img
-                        style="width: 300px"
+                        style="width: 280px; border-radius: 10px"
                         src="assets/BioStar2_QR.png"
                         alt="USCO"
                     /></ion-col>
                   </ion-row>
                   <ion-row *ngIf="(politicaDocente | json) != '[]'">
                     <ion-col
-                      ><h6
-                        class="font-usco-default font-usco-bl pre leyenda-mobile"
-                      >
+                      ><small class="pre">
                         {{ politicaDocente[0].descripcion }}
-                      </h6></ion-col
+                      </small></ion-col
                     >
                   </ion-row>
                   <ion-row>
                     <ion-col
-                      ><h6 class="font-usco-vt">
-                        <strong>CÓDIGO QR PARA MOLINETES</strong>
-                      </h6></ion-col
-                    >
+                      ><div
+                        class="d-flex align-items-center justify-content-center position-relative"
+                      >
+                        <h6
+                          class="font-usco-vt administrativo text-uppercase m-0 text-center flex-grow-1"
+                        >
+                          <strong>PRESENTAR A LA ENTRADA</strong>
+                        </h6>
+                        <span class="font-usco-gr position-absolute end-0"
+                          ><img src="assets/Frame 21.svg" alt=""
+                        /></span></div
+                    ></ion-col>
                   </ion-row>
                 </ion-grid>
               </ion-card-content>

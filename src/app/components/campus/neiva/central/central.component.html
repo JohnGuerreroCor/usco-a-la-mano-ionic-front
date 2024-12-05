@@ -8,7 +8,25 @@
 </ion-header>
 
 <ion-content>
+  <button class="Btn-regresar" [routerLink]="['/sub-sedes']">
+    <div class="sign">
+      <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+    </div>
+    <div class="text">Regresar</div>
+  </button>
   <div class="content">
-   <img src="assets/Neiva Sede Central.svg" alt="">
+    <ion-card class="mt-4">
+      <img alt="Silhouette of mountains" src="assets/central.svg" />
+      <ion-card-header>
+        <ion-card-title>Subsede Central</ion-card-title>
+        <ion-card-subtitle>Avenida Pastrana Borrero - Carrera 1</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Horario de atención: Lunes a viernes de 8:00 a.m. <br> a 12:00 m y de 2:00 p.m. a 6:00 p.m.
+        <br> Línea gratuita Nacional: 01 - 8000 - 968722
+        <br> Conmutador: +57 (608) 8754753
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

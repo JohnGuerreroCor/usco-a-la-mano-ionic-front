@@ -103,3 +103,7 @@
   justify-content: center;
   height: 100%;
 }
+
+ion-content {
+  --background: #F0F4F9;
+}

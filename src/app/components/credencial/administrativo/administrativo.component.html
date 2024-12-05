@@ -5,11 +5,36 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
     </ion-buttons>
-    <ion-title>Administrativo</ion-title>
+    <ion-title
+      class="ion-text-center"
+      style="padding-left: 0; padding-right: 40px"
+      >Administrativo</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="content" *ngIf="foto.url == ''">
+  <button class="Btn-regresar" [routerLink]="['/credenciales']">
+    <div class="sign">
+      <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+    </div>
+
+    <div class="text">Regresar</div>
+  </button>
+  <button class="Btn-molinete" (click)="flipCard(0)">
+    <div class="sign">
+      <i class="fa-solid fa-qrcode fa-2x"></i>
+    </div>
+
+    <div class="text">Molinete</div>
+  </button>
+  <button class="Btn-convenio" (click)="flipCard(1)">
+    <div class="sign">
+      <i class="fa-solid fa-earth-americas fa-2x"></i>
+    </div>
+
+    <div class="text">Convenio</div>
+  </button>
+  <div class="content" *ngIf="foto.url == ''" style="background-color: #f0f4f9">
     <ion-grid>
       <ion-row class="text-center">
         <ion-col
@@ -18,28 +43,10 @@
       </ion-row>
     </ion-grid>
   </div>
-  <div class="container mt-3 mb-5 text-center">
-    <button class="Btn-molinete" (click)="flipCard(0)">
-      <div class="sign">
-        <i class="fa-solid fa-qrcode fa-2x"></i>
-      </div>
-
-      <div class="text">Molinete</div>
-    </button>
-    <button class="Btn-convenio" (click)="flipCard(1)">
-      <div class="sign">
-        <i class="fa-solid fa-earth-americas fa-2x"></i>
-      </div>
-
-      <div class="text">Convenio</div>
-    </button>
-    <button class="Btn-regresar" [routerLink]="['/credenciales']">
-      <div class="sign">
-        <i class="fa-solid fa-arrow-left-long fa-2x"></i>
-      </div>
-
-      <div class="text">Regresar</div>
-    </button>
+  <div
+    class="container mt-3 mb-5 text-center"
+    style="background-color: #f0f4f9"
+  >
     <div class="row slide-in-fwd-center" *ngIf="foto.url != ''">
       <div class="col">
         <div class="carnet" [class.flipped]="flipped" (click)="flipCard(0)">
@@ -53,7 +60,7 @@
               <ion-card-header>
                 <ion-card-title
                   ><img
-                    src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+                    src="assets/universidad-surcolombiana-multicampos.png"
                     class="img-fluid"
                 /></ion-card-title>
               </ion-card-header>
@@ -69,15 +76,12 @@
                         class="card-img-top foto-usco cursor-select"
                     /></ion-col>
                   </ion-row>
-                  <ion-row>
-                    <ion-col></ion-col>
-                  </ion-row>
                 </ion-grid>
                 <div class="row mb-2">
                   <div class="col">
                     <h6
                       *ngIf="(administrativo | json) != '[]'"
-                      class="font-usco-default font-usco-gr text-uppercase"
+                      class="font-usco-vt text-uppercase"
                     >
                       <strong
                         >{{ persona[0].nombre }}
@@ -92,10 +96,8 @@
                       *ngIf="(administrativo | json) != '[]'"
                       class="font-usco-gr text-uppercase"
                     >
-                      <strong
-                        >{{ persona[0].documento }}:
-                        {{ administrativo[0].identificacion }}</strong
-                      >
+                      {{ persona[0].documento }}:
+                      {{ administrativo[0].identificacion }}
                     </h6>
                   </div>
                 </div>
@@ -103,9 +105,9 @@
                   <div class="col">
                     <h6
                       *ngIf="(administrativo | json) != '[]'"
-                      class="font-usco-vt font-usco-gr administrativo"
+                      class="font-usco-gr administrativo"
                     >
-                      <strong>R.H: {{ persona[0].grupoSanguineo }}</strong>
+                      R.H: {{ persona[0].grupoSanguineo }}
                     </h6>
                   </div>
                 </div>
@@ -113,7 +115,7 @@
                   <div class="col">
                     <h6
                       *ngIf="(administrativo | json) != '[]'"
-                      class="font-usco-default font-usco-gr administrativo text-uppercase"
+                      class="font-usco-default font-usco-vt administrativo text-uppercase"
                     >
                       <strong>{{ administrativo[0].nombrePrograma }}</strong>
                     </h6>
@@ -121,12 +123,19 @@
                 </div>
                 <div class="row mt-3">
                   <div class="col">
-                    <h6
-                      *ngIf="(administrativo | json) != '[]'"
-                      class="font-usco-default font-usco-vt administrativo text-uppercase"
+                    <div
+                      class="d-flex align-items-center justify-content-center position-relative"
                     >
-                      <strong>{{ administrativo[0].cargoNombre }}</strong>
-                    </h6>
+                      <h6
+                        *ngIf="(administrativo | json) != '[]'"
+                        class="font-usco-default font-usco-gr administrativo text-uppercase m-0 text-center flex-grow-1"
+                      >
+                        {{ administrativo[0].cargoNombre }}
+                      </h6>
+                      <span class="font-usco-gr position-absolute end-0"
+                        ><img src="assets/qr_code_2.svg" alt=""
+                      /></span>
+                    </div>
                   </div>
                 </div>
               </ion-card-content>
@@ -142,38 +151,46 @@
               <ion-card-header>
                 <ion-card-title
                   ><img
-                    src="assets/universidad-surcolombiana-vp.png"
-                    class="img-fluid p-3 firma-usco"
+                    src="assets/universidad-surcolombiana-multicampos.png"
+                    class="img-fluid"
                 /></ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-grid fixed>
                   <ion-row>
                     <ion-col>
-                      <qrcode
-                        [qrdata]="codigoQr"
-                        [width]="300"
-                        colorLight="#ffffff"
-                        colorDark="#1E262B"
-                        [errorCorrectionLevel]="'M'"
-                      ></qrcode
-                    ></ion-col>
+                      <div class="qr-container">
+                        <qrcode
+                          [qrdata]="codigoQr"
+                          [width]="250"
+                          colorLight="#ffffff"
+                          colorDark="#1E262B"
+                          [errorCorrectionLevel]="'M'"
+                        ></qrcode>
+                      </div>
+                    </ion-col>
                   </ion-row>
                   <ion-row *ngIf="(politicaAdministrativo | json) != '[]'">
                     <ion-col
-                      ><h6
-                        class="font-usco-default font-usco-bl pre leyenda-mobile"
-                      >
+                      ><small class="font-usco-default pre">
                         {{ politicaAdministrativo[0].descripcion }}
-                      </h6></ion-col
+                      </small></ion-col
                     >
                   </ion-row>
                   <ion-row>
-                    <ion-col
-                      ><h6 class="font-usco-vt">
-                        <strong>CÓDIGO QR PARA CONVENIOS</strong>
-                      </h6></ion-col
-                    >
+                    <ion-col>
+                      <div
+                        class="d-flex align-items-center justify-content-center position-relative"
+                      >
+                        <h6
+                          class="font-usco-vt administrativo text-uppercase m-0 text-center flex-grow-1"
+                        >
+                          <strong>APLICA PARA CONVENIOS</strong>
+                        </h6>
+                        <span class="font-usco-gr position-absolute end-0"
+                          ><img src="assets/Frame 21.svg"
+                        /></span></div
+                    ></ion-col>
                   </ion-row>
                 </ion-grid>
               </ion-card-content>
@@ -189,8 +206,8 @@
               <ion-card-header>
                 <ion-card-title
                   ><img
-                    src="assets/universidad-surcolombiana-vp.png"
-                    class="img-fluid p-3 firma-usco"
+                    src="assets/universidad-surcolombiana-multicampos.png"
+                    class="img-fluid"
                 /></ion-card-title>
               </ion-card-header>
               <ion-card-content>
@@ -198,26 +215,32 @@
                   <ion-row>
                     <ion-col>
                       <img
-                        style="width: 300px"
+                        style="width: 280px; border-radius: 10px"
                         src="assets/BioStar2_QR.png"
                         alt="USCO"
                     /></ion-col>
                   </ion-row>
                   <ion-row *ngIf="(politicaAdministrativo | json) != '[]'">
                     <ion-col
-                      ><h6
-                        class="font-usco-default font-usco-bl pre leyenda-mobile"
-                      >
+                      ><small class="font-usco-default pre">
                         {{ politicaAdministrativo[0].descripcion }}
-                      </h6></ion-col
+                      </small></ion-col
                     >
                   </ion-row>
                   <ion-row>
                     <ion-col
-                      ><h6 class="font-usco-vt">
-                        <strong>CÓDIGO QR PARA MOLINETES</strong>
-                      </h6></ion-col
-                    >
+                      ><div
+                        class="d-flex align-items-center justify-content-center position-relative"
+                      >
+                        <h6
+                          class="font-usco-vt administrativo text-uppercase m-0 text-center flex-grow-1"
+                        >
+                          <strong>PRESENTAR A LA ENTRADA</strong>
+                        </h6>
+                        <span class="font-usco-gr position-absolute end-0"
+                          ><img src="assets/Frame 21.svg" alt=""
+                        /></span></div
+                    ></ion-col>
                   </ion-row>
                 </ion-grid>
               </ion-card-content>

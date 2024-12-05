@@ -16,7 +16,7 @@
       <ion-card-header>
         <ion-card-title
           ><img
-            src="https://www.usco.edu.co/imagen-institucional/ocre/universidad-surcolombiana-multicampos.png"
+            src="assets/universidad-surcolombiana-multicampos.png"
             class="img-fluid"
         /></ion-card-title>
       </ion-card-header>
@@ -40,7 +40,7 @@
           <div class="col">
             <h6
               *ngIf="(estudiante | json) != '[]'"
-              class="font-usco-default font-usco-gr text-uppercase"
+              class="font-usco-vt text-uppercase"
             >
               <strong
                 >{{ estudiante[0].persona.nombre }}
@@ -55,7 +55,7 @@
               *ngIf="(estudiante | json) != '[]'"
               class="font-usco-gr text-uppercase"
             >
-              <strong>Código: {{ estudiante[0].codigo }}</strong>
+              Código: {{ estudiante[0].codigo }}
             </h6>
           </div>
         </div>
@@ -63,12 +63,17 @@
           <div class="col">
             <h6
               *ngIf="(estudiante | json) != '[]'"
-              class="font-usco-default font-usco-gr"
+              class="font-usco-gr text-uppercase"
             >
-              <strong
-                >{{ estudiante[0].persona.documento }}:
-                {{ estudiante[0].persona.identificacion }}</strong
-              >
+              RH: {{ estudiante[0].persona.grupoSanguineo }}
+            </h6>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <h6 *ngIf="(estudiante | json) != '[]'" class="font-usco-gr">
+              {{ estudiante[0].persona.documento }}:
+              {{ estudiante[0].persona.identificacion }}
             </h6>
           </div>
         </div>
@@ -76,7 +81,7 @@
           <div class="col">
             <h6
               *ngIf="(estudiante | json) != '[]'"
-              class="font-usco-default font-usco-gr text-uppercase"
+              class="font-usco-vt text-uppercase"
             >
               <strong>{{ estudiante[0].programa.nombreCorto }}</strong>
             </h6>
@@ -89,9 +94,7 @@
         </div>
         <div class="row mt-3">
           <div class="col">
-            <h6 class="font-usco-default font-usco-vt text-uppercase">
-              <strong>ESTUDIANTE</strong>
-            </h6>
+            <h6 class="font-usco-gr text-uppercase">ESTUDIANTE</h6>
           </div>
         </div>
       </ion-card-content>

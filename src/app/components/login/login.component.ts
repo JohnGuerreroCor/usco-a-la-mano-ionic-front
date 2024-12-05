@@ -10,11 +10,18 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { WebparametroService } from 'src/app/services/webparametro.service';
 import { ToastController } from '@ionic/angular';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { subscriptSizing: 'dynamic' },
+    },
+  ],
 })
 export class LoginComponent implements OnInit {
   // Modelo para almacenar los datos del usuario del formulario de inicio de sesión
@@ -25,7 +32,8 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   // Booleano para mostrar/ocultar un componente específico en la plantilla
-  ver = true;
+  alert = false;
+  error: string = '';
 
   // Objeto Date que representa la fecha actual
   today = new Date();
@@ -53,22 +61,6 @@ export class LoginComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       if (this.authService.codigoverificacion != null) {
         // Mostrar un mensaje de notificación si ya se ha iniciado sesión con un token de verificación
-        /* const Toast = swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', swal.stopTimer);
-              toast.addEventListener('mouseleave', swal.resumeTimer);
-            },
-          });
-  
-          Toast.fire({
-            icon: 'info',
-            title: 'Ya se ha iniciado sesión.',
-          }); */
         this.toastController
           .create({
             message: 'Ya se ha iniciado sesión.',
@@ -107,62 +99,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // Método para mostrar información sobre los tipos de usuario de USCO mediante una alerta de SweetAlert2
-  informacion() {
-    /* swal.fire({
-        icon: 'info',
-        title: 'Tipos de Usuario USCO',
-        imageUrl: 'assets/tipousuariousco2.png',
-        imageWidth: 400,
-        imageHeight: 280,
-        imageAlt: 'USCO',
-        confirmButtonColor: '#8f141b',
-        confirmButtonText: 'Listo',
-        showClass: {
-          popup: 'slide-top',
-        },
-      }); */
-  }
-
   // Método para realizar el inicio de sesión del usuario
   login(): void {
     this.cargando = true;
     this.usuario.username = this.formLogin.get('usuario')!.value;
     this.usuario.password = this.formLogin.get('contrasenia')!.value;
-
-    // Validar que no se ingresen campos de inicio de sesión vacíos
-    if (this.usuario.username == null || this.usuario.password == null) {
-      /* const Toast = swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', swal.stopTimer);
-            toast.addEventListener('mouseleave', swal.resumeTimer);
-          },
-        });
-  
-        Toast.fire({
-          icon: 'error',
-          title: 'Error de inicio de sesión',
-          text: 'Usuario o contraseña vacía',
-        }); */
-      /* this.toastController
-        .create({
-          message: 'Error de inicio de sesión.',
-          duration: 2500,
-          position: 'top',
-          color: 'danger',
-          icon: 'close-circle', // Puedes usar un icono de Ionic
-        })
-        .then((toast) => {
-          toast.present(); // Muestra el toast
-        }); */
-      this.cargando = false;
-      return;
-    }
 
     // Realizar la solicitud de inicio de sesión al servicio authService
     this.authService.login(this.usuario).subscribe(
@@ -171,19 +112,8 @@ export class LoginComponent implements OnInit {
         this.authService.guardarUsuario(response.access_token);
         this.authService.guardarToken(response.access_token);
 
-        // Mostrar mensaje de éxito y redirigir
-        /* swal.fire({
-            icon: 'success',
-            title: 'Inicio de sesión exitoso.',
-            confirmButtonColor: '#8f141b',
-            confirmButtonText: 'Listo',
-            showClass: {
-              popup: 'slide-top',
-            },
-          }); */
-
         // Redirigir al usuario a la página de inicio o de token según el valor del parámetro web
-        this.toastController
+        /* this.toastController
           .create({
             message: 'Inicio de sesión exitoso.',
             duration: 2500,
@@ -193,8 +123,9 @@ export class LoginComponent implements OnInit {
           })
           .then((toast) => {
             toast.present(); // Muestra el toast
-          });
+          }); */
         this.webparametroService.obtenerWebParametro().subscribe((data) => {
+          this.alert = false; // Activar la alerta en la interfaz
           if (data[0].webValor === '1') {
             this.router.navigate(['/token']);
           } else {
@@ -206,17 +137,15 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  // Método para manejar errores de inicio de sesión
   fError(er: { error: { error_description: any } }): void {
     let err = er.error.error_description;
     let arr: string[] = err.split(':');
+    this.alert = true; // Activar la alerta en la interfaz
+    this.error = 'Usuario y/o contraseña incorrectos.'; // Asignar el mensaje de error
+
     if (arr[0] == 'Access token expired') {
-      // Si el token de acceso ha expirado, redirigir al usuario a la página de inicio de sesión
       this.router.navigate(['login']);
-      this.cargando = false;
-    } else {
-      // Manejo de otros errores
-      this.cargando = false;
     }
+    this.cargando = false;
   }
 }

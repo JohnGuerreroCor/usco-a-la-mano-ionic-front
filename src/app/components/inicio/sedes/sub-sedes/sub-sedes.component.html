@@ -8,10 +8,35 @@
 </ion-header>
 
 <ion-content>
-  <div class="content">
+  <button class="Btn-regresar" [routerLink]="['/sedes']">
+    <div class="sign">
+      <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+    </div>
+
+    <div class="text">Regresar</div>
+  </button>
+  <div class="content" style="background-color: #F0F4F9;">
     <ion-grid>
+      <ion-card *ngFor="let link of links" [button]="true">
+        <ion-card-content [routerLink]="link.ruta">
+          <ion-list>
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img [src]="link.img" class="rounded" [alt]="link.titulo" />
+              </ion-thumbnail>
+              <ion-label
+                ><span class="font-usco-vt" style="font-weight: 600">{{
+                  link.titulo
+                }}</span>
+                <br />
+                {{ link.descripcion }}
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
       <!-- Caso cuando la longitud es par o todos menos el último si es impar -->
-      <ion-row>
+     <!--  <ion-row>
         <ng-container *ngFor="let link of links; let i = index">
           <ion-col
             *ngIf="i < links.length - (links.length % 2 !== 0 ? 1 : 0)"
@@ -22,7 +47,19 @@
               [button]="true"
               [routerLink]="link.ruta"
             >
-              <img [src]="link.img" [alt]="link.titulo" />
+              <div class="image-container">
+                <img
+                  [src]="link.img"
+                  [alt]="link.titulo"
+                  (load)="onImageLoad()"
+                  [class.hidden]="!isLoading"
+                />
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="skeleton"
+                  [class.hidden]="isLoading"
+                ></ion-skeleton-text>
+              </div>
               <ion-card-header class="ion-text-center">
                 <ion-card-title class="font-usco-vt">
                   <strong>{{ link.titulo }}</strong>
@@ -31,17 +68,29 @@
             </ion-card>
           </ion-col>
         </ng-container>
-      </ion-row>
+      </ion-row> -->
       <!-- Caso cuando la longitud de links es impar (solo el último elemento) -->
-      <ion-row *ngIf="links.length % 2 !== 0">
-        <!-- Mostrar solo el último elemento -->
+       <!-- Mostrar solo el último elemento -->
+      <!-- <ion-row *ngIf="links.length % 2 !== 0">
         <ion-col size="6" offset="3">
           <ion-card
             class="ion-text-center"
             [button]="true"
             [routerLink]="links[links.length - 1].ruta"
           >
-            <img [src]="links[links.length - 1].img" [alt]="links[links.length - 1].titulo" />
+            <div class="image-container">
+              <img
+                [src]="links[links.length - 1].img"
+                [alt]="links[links.length - 1].titulo"
+                (load)="onImageLoad()"
+                [class.hidden]="!isLoading"
+              />
+              <ion-skeleton-text
+                [animated]="true"
+                class="skeleton"
+                [class.hidden]="isLoading"
+              ></ion-skeleton-text>
+            </div>
             <ion-card-header class="ion-text-center">
               <ion-card-title class="font-usco-vt">
                 <strong>{{ links[links.length - 1].titulo }}</strong>
@@ -49,7 +98,7 @@
             </ion-card-header>
           </ion-card>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-grid>
   </div>
 </ion-content>
