@@ -27,6 +27,7 @@ export class AdministrativoComponent implements OnInit {
   cargaFoto: boolean = false;
   flipped: boolean = false;
   tipoQr: number = 0;
+  codigoBarras: any;
 
   //Objetos
   administrativo: Administrativo[] = [];
@@ -122,6 +123,10 @@ export class AdministrativoComponent implements OnInit {
               this.codigoQr =
                 'https://gaitana.usco.edu.co/carnet_digital/#/publico;key=' +
                 qr;
+              this.codigoBarras =
+                'https://barcode.tec-it.com/barcode.ashx?data=' +
+                this.persona[0].identificacion +
+                '&code=Code128&translate-esc=on&unit=Fit&imagetype=Jpg&color=4d626c&showhrt=no&modulewidth=0.265';
             } else {
               this.administrativo = [];
             }

@@ -26,19 +26,19 @@ export class SedesComponent implements OnInit {
       },
       {
         titulo: 'Garzón',
-        ruta: '/sedes',
+        ruta: '/garzon',
         img: 'assets/sedes/garzon/garzon.jpg',
         descripcion: 'Visualiza los bloques de la sede Garzón.',
       },
       {
         titulo: 'Pitalito',
-        ruta: '/sedes',
+        ruta: '/pitalito',
         img: 'assets/sedes/pitalito/pitalito.jpg',
         descripcion: 'Visualiza los bloques de la sede Pitalito.',
       },
       {
         titulo: 'La Plata',
-        ruta: '/sedes',
+        ruta: '/laplata',
         img: 'assets/sedes/laplata/laplata.jpg',
         descripcion: 'Visualiza los bloques de la sede La Plata.',
       },

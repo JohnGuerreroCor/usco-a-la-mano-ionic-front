@@ -40,6 +40,11 @@ import { PublicoComponent } from './components/publico/publico.component';
 import { SedesComponent } from './components/inicio/sedes/sedes.component';
 import { SubSedesComponent } from './components/inicio/sedes/sub-sedes/sub-sedes.component';
 import { CentralComponent } from './components/campus/neiva/central/central.component';
+import { PostgradosComponent } from './components/campus/neiva/postgrados/postgrados.component';
+import { SaludComponent } from './components/campus/neiva/salud/salud.component';
+import { PitalitoComponent } from './components/campus/pitalito/pitalito.component';
+import { GarzonComponent } from './components/campus/garzon/garzon.component';
+import { LaplataComponent } from './components/campus/laplata/laplata.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +77,11 @@ import { CentralComponent } from './components/campus/neiva/central/central.comp
     BibliotecaComponent,
     PublicoComponent,
     CentralComponent,
+    PostgradosComponent,
+    SaludComponent,
+    PitalitoComponent,
+    GarzonComponent,
+    LaplataComponent,
     PeriodoPipe
   ],
   imports: [

@@ -27,13 +27,13 @@ export class SubSedesComponent implements OnInit {
       },
       {
         titulo: 'Posgrados',
-        ruta: '/sub-sedes',
+        ruta: '/campus-neiva-postgrados',
         img: 'assets/sedes/neiva/posgrados/posgrados.jpg',
         descripcion: 'Visualiza los bloques de la subsede Posgrados de Neiva.',
       },
       {
         titulo: 'Salud',
-        ruta: '/sub-sedes',
+        ruta: '/campus-neiva-salud',
         img: 'assets/sedes/neiva/salud/neiva-salud.jpg',
         descripcion: 'Visualiza los bloques de la subsede Salud de Neiva',
       },
