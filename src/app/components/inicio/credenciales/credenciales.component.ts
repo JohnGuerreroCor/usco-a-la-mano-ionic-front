@@ -79,9 +79,9 @@ export class CredencialesComponent implements OnInit {
               break;
             case 6: //INTERCAMBIO
               this.links.push({
-                titulo: 'Est. Intercmabio',
+                titulo: 'Est. Intercambio',
                 ruta: '/estudiante-intercambio',
-                icono: 'fa-solid fa-building-columns fa-3x  color-icon',
+                icono: 'fa-solid fa-earth-americas fa-3x  color-icon',
                 info: 'Consulta, cambio de foto para los diferentes estamentos de la institución y aclaración de las dependencias que administran la información de cada estamento.',
                 descripcion:
                   'Identifícate como estudiante de intercambio de la Universidad Surcolomiana',

@@ -594,6 +594,7 @@ footer {
   position: absolute;
   right: 0%;
   width: 0%;
+  padding-left: 10px;
   opacity: 0;
   color: white;
   font-size: 1.2em;
@@ -602,7 +603,7 @@ footer {
 }
 /* hover effect on button width */
 .Btn-molinete.hover {
-  width: 180px;
+  width: 150px;
   border-radius: 16px;
   transition-duration: 0.3s;
 }
@@ -645,36 +646,9 @@ footer {
   z-index: 9999;
 }
 
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign svg {
-  width: 17px;
-}
-
-.sign svg path {
-  fill: white;
-}
-/* text */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.2em;
-  font-weight: 600;
-  transition-duration: 0.3s;
-}
 /* hover effect on button width */
 .Btn-convenio.hover {
-  width: 180px;
+  width: 150px;
   border-radius: 16px;
   transition-duration: 0.3s;
 }
@@ -717,38 +691,10 @@ footer {
   z-index: 9999;
 }
 
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign svg {
-  width: 17px;
-}
-
-.sign svg path {
-  fill: white;
-}
-
-/* text */
-.text {
-  position: absolute;
-  left: 40px; /* Cambiado de right a left */
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.2em;
-  font-weight: 600;
-  transition-duration: 0.3s;
-}
 
 /* Hover effect */
 .Btn-regresar.hover {
-  width: 180px; /* Aumenta el ancho hacia la derecha */
+  width: 150px; /* Aumenta el ancho hacia la derecha */
   border-radius: 16px;
   transition-duration: 0.3s;
 }
@@ -771,10 +717,6 @@ footer {
   transform: translate(2px, 2px);
 }
 
-
-
-
-
 /* Botono regresar tab */
 .Btn-regresar-tab {
   display: flex;
@@ -796,36 +738,10 @@ footer {
   z-index: 9999;
 }
 
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.sign svg {
-  width: 17px;
-}
-
-.sign svg path {
-  fill: white;
-}
-/* text */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.2em;
-  font-weight: 600;
-  transition-duration: 0.3s;
-}
 /* hover effect on button width */
 .Btn-regresar-tab.hover {
-  width: 180px;
+  width: 150px;
   border-radius: 16px;
   transition-duration: 0.3s;
 }
